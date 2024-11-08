@@ -1,6 +1,6 @@
-<wtable
-	title="Tokens"
-	[columns]="columns"
-	[config]="config"
-	[rows]="rows"
-></wtable>
+<wtable title="Tokens" [columns]="columns" [config]="config" [rows]="rows">
+	<ng-template cell="token" let-element> {{element._id}} </ng-template>
+	<ng-template cell="created" let-element>
+		{{element._id|mongodate|date:'d MMMM y'}}
+	</ng-template>
+</wtable>

@@ -14,8 +14,6 @@ import {
 export class UsertokenService extends CrudService<Usertoken> {
 	usertokens: Usertoken[] = this.getDocs();
 
-	usertokensByAuthor: Record<string, Usertoken[]> = {};
-
 	constructor(
 		_http: HttpService,
 		_store: StoreService,
@@ -33,7 +31,5 @@ export class UsertokenService extends CrudService<Usertoken> {
 		);
 
 		this.get();
-
-		this.filteredDocuments(this.usertokensByAuthor);
 	}
 }

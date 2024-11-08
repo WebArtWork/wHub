@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertService, CoreService } from 'wacom';
+import { AlertService } from 'wacom';
 import { UsertokenService } from '../../services/usertoken.service';
 import { Usertoken } from '../../interfaces/usertoken.interface';
 import { FormService } from 'src/app/core/modules/form/form.service';
@@ -12,32 +12,21 @@ import { usertokenFormComponents } from '../../formcomponents/usertoken.formcomp
 	styleUrls: ['./tokens.component.scss']
 })
 export class TokensComponent {
-	columns = ['name', 'description'];
+	columns = ['token', 'created'];
 
-	form: FormInterface = this._form.getForm('usertoken', usertokenFormComponents);
+	form: FormInterface = this._form.getForm(
+		'usertoken',
+		usertokenFormComponents
+	);
 
 	config = {
 		create: (): void => {
-			this._form.modal<Usertoken>(this.form, {
-				label: 'Create',
-				click: (created: unknown, close: () => void) => {
-					this._usertokenService.create(created as Usertoken);
-
-					close();
-				}
-			});
-		},
-		update: (doc: Usertoken): void => {
-			this._form.modal<Usertoken>(this.form, [], doc).then((updated: Usertoken) => {
-				this._core.copy(updated, doc);
-
-				this._usertokenService.update(doc);
-			});
+			this._usertokenService.create({} as Usertoken);
 		},
 		delete: (doc: Usertoken): void => {
 			this._alert.question({
 				text: this._translate.translate(
-					'Common.Are you sure you want to delete this usertoken?'
+					'Common.Are you sure you want to delete this token?'
 				),
 				buttons: [
 					{
@@ -54,9 +43,24 @@ export class TokensComponent {
 		},
 		buttons: [
 			{
-				icon: 'cloud_download',
+				icon: 'content_copy',
 				click: (doc: Usertoken): void => {
-					this._form.modalUnique<Usertoken>('usertoken', 'url', doc);
+					navigator.clipboard.writeText(doc._id).then(
+						() => {
+							this._alert.show({
+								text: this._translate.translate(
+									'Common.Text copied to clipboard'
+								)
+							});
+						},
+						() => {
+							this._alert.error({
+								text: this._translate.translate(
+									'Common.Failed to copy text'
+								)
+							});
+						}
+					);
 				}
 			}
 		]
@@ -70,7 +74,6 @@ export class TokensComponent {
 		private _translate: TranslateService,
 		private _usertokenService: UsertokenService,
 		private _alert: AlertService,
-		private _form: FormService,
-		private _core: CoreService
+		private _form: FormService
 	) {}
 }
