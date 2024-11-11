@@ -98,6 +98,26 @@
 					<span class="material-icons">token</span>
 					<span translate>Theme.Tokens</span>
 				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/commerces"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">business</span>
+					<span translate>Theme.Commerces</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/products"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">shopping_bag</span>
+					<span translate>Theme.Products</span>
+				</a>
 				<hr />
 			</div>
 		</div>
