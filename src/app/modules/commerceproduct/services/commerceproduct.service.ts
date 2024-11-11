@@ -34,6 +34,8 @@ export class CommerceproductService extends CrudService<Commerceproduct> {
 
 		this.get();
 
+		_core.on('wipe').subscribe(this.get.bind(this));
+
 		this.filteredDocuments(this.commerceproductsByCommerce, 'commerce');
 	}
 }
