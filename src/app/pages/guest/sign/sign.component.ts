@@ -13,8 +13,9 @@ interface RespStatus {
 }
 
 @Component({
-	templateUrl: './sign.component.html',
-	styleUrls: ['./sign.component.scss']
+    templateUrl: './sign.component.html',
+    styleUrls: ['./sign.component.scss'],
+    standalone: false
 })
 export class SignComponent {
 	form: FormInterface = this._form.getForm('sign', {

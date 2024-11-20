@@ -11,9 +11,10 @@ import { FormInterface } from '../interfaces/form.interface';
 import { FormService } from '../form.service';
 
 @Component({
-	selector: 'form-component',
-	templateUrl: './form-component.component.html',
-	styleUrls: ['./form-component.component.scss']
+    selector: 'form-component',
+    templateUrl: './form-component.component.html',
+    styleUrls: ['./form-component.component.scss'],
+    standalone: false
 })
 export class FormComponentComponent implements OnInit {
 	@Input() index: string;

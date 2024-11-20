@@ -7,9 +7,10 @@ import { User } from '../../interfaces/user.interface';
 import { UserService } from '../../services/user.service';
 
 @Component({
-	selector: 'app-users',
-	templateUrl: './users.component.html',
-	styleUrls: ['./users.component.scss']
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.scss'],
+    standalone: false
 })
 export class UsersComponent {
 	form: FormInterface = this._form.getForm('user');

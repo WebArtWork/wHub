@@ -8,8 +8,9 @@ import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interfa
 import { commerceFormComponents } from '../../formcomponents/commerce.formcomponents';
 
 @Component({
-	templateUrl: './commerces.component.html',
-	styleUrls: ['./commerces.component.scss']
+    templateUrl: './commerces.component.html',
+    styleUrls: ['./commerces.component.scss'],
+    standalone: false
 })
 export class CommercesComponent {
 	columns = ['name', 'description'];

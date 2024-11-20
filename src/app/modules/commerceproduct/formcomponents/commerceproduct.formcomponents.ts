@@ -9,11 +9,21 @@ export const commerceproductFormComponents = {
 			fields: [
 				{
 					name: 'Placeholder',
-					value: 'fill product title'
+					value: 'fill product name'
 				},
 				{
 					name: 'Label',
-					value: 'Title'
+					value: 'Name'
+				}
+			]
+		},
+		{
+			name: 'Photo',
+			key: 'thumb',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Thumb'
 				}
 			]
 		},

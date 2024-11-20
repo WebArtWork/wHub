@@ -9,9 +9,10 @@ import { FileCropperComponent } from './file-cropper/file-cropper.component';
  * multiple file uploads.
  */
 @Component({
-	selector: 'ngx-file',
-	templateUrl: './file.component.html',
-	styleUrls: ['./file.component.scss']
+    selector: 'ngx-file',
+    templateUrl: './file.component.html',
+    styleUrls: ['./file.component.scss'],
+    standalone: false
 })
 export class FileComponent implements OnInit {
 	/**

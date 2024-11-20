@@ -17,9 +17,10 @@ import { CoreService } from 'wacom';
  * custom value replacement, and event handling for changes, submissions, and blur events.
  */
 @Component({
-	selector: 'winput',
-	templateUrl: './input.component.html',
-	styleUrls: ['./input.component.scss']
+    selector: 'winput',
+    templateUrl: './input.component.html',
+    styleUrls: ['./input.component.scss'],
+    standalone: false
 })
 export class InputComponent implements OnInit, OnChanges {
 	/**

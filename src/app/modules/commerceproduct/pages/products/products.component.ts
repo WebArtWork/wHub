@@ -9,8 +9,9 @@ import { commerceproductFormComponents } from '../../formcomponents/commerceprod
 import { Router } from '@angular/router';
 
 @Component({
-	templateUrl: './products.component.html',
-	styleUrls: ['./products.component.scss']
+    templateUrl: './products.component.html',
+    styleUrls: ['./products.component.scss'],
+    standalone: false
 })
 export class ProductsComponent {
 	commerce = this._router.url.includes('/products/')
@@ -66,6 +67,32 @@ export class ProductsComponent {
 				]
 			});
 		},
+		headerButtons: [
+			{
+				icon: 'edit_note',
+				click: (): void => {
+					// for (const product of products) {
+					// 	if (this.commerce) {
+					// 		product.commerce = this.commerce
+					// 	}
+
+					// 	this._cps.create(product);
+					// }
+				}
+			},
+			{
+				icon: 'playlist_add',
+				click: (): void => {
+					// for (const product of products) {
+					// 	if (this.commerce) {
+					// 		product.commerce = this.commerce
+					// 	}
+
+					// 	this._cps.create(product);
+					// }
+				}
+			}
+		],
 		buttons: [
 			{
 				icon: 'cloud_download',
