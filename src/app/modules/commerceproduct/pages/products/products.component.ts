@@ -44,8 +44,12 @@ export class ProductsComponent {
 			this._form
 				.modal<Commerceproduct>(this.form, [], doc)
 				.then((updated: Commerceproduct) => {
+					console.log(updated);
+					console.log(doc);
+
 					this._core.copy(updated, doc);
 
+					console.log(doc);
 					this._cps.update(doc);
 				});
 		},
@@ -95,7 +99,7 @@ export class ProductsComponent {
 
 	get rows(): Commerceproduct[] {
 		return this.commerce
-			? this._cps.commerceproductsByCommerce[this.commerce]
+			? this._cps.commerceproductsByCommerce[this.commerce] || []
 			: this._cps.commerceproducts;
 	}
 
@@ -115,9 +119,21 @@ export class ProductsComponent {
 				.then((products: Commerceproduct[]) => {
 					if (create) {
 						for (const practice of products) {
+							if (this.commerce) {
+								practice.commerce = this.commerce;
+							}
+
 							this._cps.create(practice);
 						}
 					} else {
+						for (const practice of this.rows) {
+							if (!products.find(
+								localPractice => localPractice._id === practice._id
+							)) {
+								this._cps.delete(practice);
+							}
+						}
+
 						for (const practice of products) {
 							const localPractice = this.rows.find(
 								localPractice => localPractice._id === practice._id
@@ -128,7 +144,11 @@ export class ProductsComponent {
 
 								this._cps.update(localPractice);
 							} else {
-								this._cps.delete(practice);
+								if (this.commerce) {
+									practice.commerce = this.commerce;
+								}
+
+								this._cps.create(practice);
 							}
 						}
 					}
