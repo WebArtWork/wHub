@@ -69,29 +69,15 @@ export class ProductsComponent {
 		},
 		headerButtons: [
 			{
-				icon: 'edit_note',
-				click: (): void => {
-					// for (const product of products) {
-					// 	if (this.commerce) {
-					// 		product.commerce = this.commerce
-					// 	}
-
-					// 	this._cps.create(product);
-					// }
-				}
+				icon: 'playlist_add',
+				click: this._bulkManagement(),
+				class: 'playlist',
 			},
 			{
-				icon: 'playlist_add',
-				click: (): void => {
-					// for (const product of products) {
-					// 	if (this.commerce) {
-					// 		product.commerce = this.commerce
-					// 	}
-
-					// 	this._cps.create(product);
-					// }
-				}
-			}
+				icon: 'edit_note',
+				click: this._bulkManagement(false),
+				class: 'edit',
+			},
 		],
 		buttons: [
 			{
@@ -121,4 +107,32 @@ export class ProductsComponent {
 		private _core: CoreService,
 		private _router: Router
 	) {}
+
+	private _bulkManagement(create = true): () => void {
+		return (): void => {
+			this._form
+				.modalDocs<Commerceproduct>(create ? [] : this.rows)
+				.then((products: Commerceproduct[]) => {
+					if (create) {
+						for (const practice of products) {
+							this._cps.create(practice);
+						}
+					} else {
+						for (const practice of products) {
+							const localPractice = this.rows.find(
+								localPractice => localPractice._id === practice._id
+							);
+
+							if (localPractice) {
+								this._core.copy(practice, localPractice);
+
+								this._cps.update(localPractice);
+							} else {
+								this._cps.delete(practice);
+							}
+						}
+					}
+				});
+		};
+	}
 }

@@ -87,6 +87,17 @@
 					<span class="material-icons">translate</span>
 					<span translate>Theme.Translates</span>
 				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/interns"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">work</span>
+					<span translate>Theme.Interns</span>
+				</a>
 				<hr *ngIf="us.role('admin')" />
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"

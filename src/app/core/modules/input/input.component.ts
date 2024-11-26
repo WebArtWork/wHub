@@ -152,8 +152,6 @@ export class InputComponent implements OnInit, OnChanges {
 	 * Detect changes.
 	 */
 	ngOnChanges(changes: SimpleChanges): void {
-		console.log(changes);
-
 		if (changes['disabled']) {
 			this.disabled = changes['disabled'].currentValue;
 		}

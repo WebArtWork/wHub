@@ -1,0 +1,18 @@
+<wtable title="Interns" [columns]="columns" [config]="config" [rows]="rows">
+	<ng-template cell="thumb" let-element>
+		<img
+			[src]="'https://webart.work'+element.thumb"
+			[alt]="element.name"
+			*ngIf="element.thumb"
+			style="height: 50px; width: auto"
+		/>
+	</ng-template>
+	<ng-template cell="url" let-element>
+		<a
+			style="color: white"
+			target="_blank"
+			href="https://webart.work/intern/{{element.url || element._id}}"
+			>webart.work/intern/{{element.url || element._id}}</a
+		>
+	</ng-template>
+</wtable>

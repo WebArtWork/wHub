@@ -109,6 +109,16 @@ const routes: Routes = [
 		children: [
 			/* admin */
 			{
+				path: 'interns',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Interns'
+					}
+				},
+				loadChildren: () => import('./modules/practice/pages/interns/interns.module').then(m => m.InternsModule)
+			},
+			{
 				path: 'users',
 				canActivate: [MetaGuard],
 				data: {
