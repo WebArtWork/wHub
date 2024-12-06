@@ -129,6 +129,16 @@
 					<span class="material-icons">shopping_bag</span>
 					<span translate>Theme.Products</span>
 				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/parses"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">code</span>
+					<span translate>Theme.Parse code</span>
+				</a>
 				<hr />
 			</div>
 		</div>

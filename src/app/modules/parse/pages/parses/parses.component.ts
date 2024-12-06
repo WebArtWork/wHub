@@ -31,11 +31,13 @@ export class ParsesComponent {
 			});
 		},
 		update: (doc: Parse): void => {
-			this._form.modal<Parse>(this.form, [], doc).then((updated: Parse) => {
-				this._core.copy(updated, doc);
+			this._form
+				.modal<Parse>(this.form, [], doc)
+				.then((updated: Parse) => {
+					this._core.copy(updated, doc);
 
-				this._parseService.update(doc);
-			});
+					this._parseService.update(doc);
+				});
 		},
 		delete: (doc: Parse): void => {
 			this._alert.question({
@@ -67,13 +69,13 @@ export class ParsesComponent {
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
+				class: 'edit'
+			}
 		]
 	};
 
@@ -102,16 +104,18 @@ export class ParsesComponent {
 						}
 					} else {
 						for (const parse of this.rows) {
-							if (!parses.find(
-								localParse => localParse._id === parse._id
-							)) {
+							if (
+								!parses.find(
+									(localParse) => localParse._id === parse._id
+								)
+							) {
 								this._parseService.delete(parse);
 							}
 						}
 
 						for (const parse of parses) {
 							const localParse = this.rows.find(
-								localParse => localParse._id === parse._id
+								(localParse) => localParse._id === parse._id
 							);
 
 							if (localParse) {

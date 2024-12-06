@@ -56,8 +56,11 @@ const routes: Routes = [
 						title: 'Fields'
 					}
 				},
-				loadChildren: () => import('./modules/parsefield/pages/fields/fields.module').then(m => m.FieldsModule)
-			}, 
+				loadChildren: () =>
+					import(
+						'./modules/parsefield/pages/fields/fields.module'
+					).then((m) => m.FieldsModule)
+			},
 			{
 				path: 'parses',
 				canActivate: [MetaGuard],
@@ -66,8 +69,11 @@ const routes: Routes = [
 						title: 'Parses'
 					}
 				},
-				loadChildren: () => import('./modules/parse/pages/parses/parses.module').then(m => m.ParsesModule)
-			}, 
+				loadChildren: () =>
+					import('./modules/parse/pages/parses/parses.module').then(
+						(m) => m.ParsesModule
+					)
+			},
 			{
 				path: 'commerces',
 				canActivate: [MetaGuard],
@@ -77,9 +83,9 @@ const routes: Routes = [
 					}
 				},
 				loadChildren: () =>
-					import('./modules/commerce/pages/commerces/commerces.module').then(
-						(m) => m.CommerceModule
-					)
+					import(
+						'./modules/commerce/pages/commerces/commerces.module'
+					).then((m) => m.CommerceModule)
 			},
 			{
 				path: 'products',
@@ -90,9 +96,9 @@ const routes: Routes = [
 					}
 				},
 				loadChildren: () =>
-					import('./modules/commerceproduct/pages/products/products.module').then(
-						(m) => m.CommerceproductModule
-					)
+					import(
+						'./modules/commerceproduct/pages/products/products.module'
+					).then((m) => m.CommerceproductModule)
 			},
 			{
 				path: 'tokens',
@@ -103,9 +109,9 @@ const routes: Routes = [
 					}
 				},
 				loadChildren: () =>
-					import('./modules/usertoken/pages/tokens/tokens.module').then(
-						(m) => m.UsertokenModule
-					)
+					import(
+						'./modules/usertoken/pages/tokens/tokens.module'
+					).then((m) => m.UsertokenModule)
 			},
 			{
 				path: 'profile',
@@ -136,7 +142,10 @@ const routes: Routes = [
 						title: 'Interns'
 					}
 				},
-				loadChildren: () => import('./modules/practice/pages/interns/interns.module').then(m => m.InternsModule)
+				loadChildren: () =>
+					import(
+						'./modules/practice/pages/interns/interns.module'
+					).then((m) => m.InternsModule)
 			},
 			{
 				path: 'users',
