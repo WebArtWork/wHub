@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">wHub</string>
+    <string name="title_activity_main">wHub</string>
+    <string name="package_name">whub.webart.work</string>
+    <string name="custom_url_scheme">whub.webart.work</string>
+</resources>
