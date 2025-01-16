@@ -142,18 +142,20 @@ export class UserService extends CrudService<User> {
 		);
 	}
 
-	logout(): void {
+	async logout(): Promise<void> {
 		this.user = this.new();
 
 		localStorage.removeItem('waw_user');
 
-		this.http.get('/api/user/logout').subscribe(() => {
-			this._router.navigateByUrl('/sign');
+		this.http.remove('token');
 
-			setTimeout(() => {
-				location.reload();
-			}, 100);
-		});
+		await this.http.get('/api/user/logout');
+
+		this._router.navigateByUrl('/sign');
+
+		setTimeout(() => {
+			location.reload();
+		}, 100);
 	}
 
 	updateAdmin(user: User): void {
