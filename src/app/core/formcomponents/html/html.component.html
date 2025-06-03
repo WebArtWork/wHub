@@ -1,3 +1,10 @@
 <ng-template #templateRef let-data>
-	<p>Formcomponent Html is connected</p>
+	<tinymce
+		[config]="editorConfig"
+		[ngModel]="data.submition[data.key]"
+		(ngModelChange)="
+			data.submition[data.key] = $event;
+			data.wChange()
+		"
+	></tinymce>
 </ng-template>

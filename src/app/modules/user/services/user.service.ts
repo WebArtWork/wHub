@@ -14,13 +14,26 @@ import { environment } from 'src/environments/environment';
 	providedIn: 'root'
 })
 export class UserService extends CrudService<User> {
+	readonly url = environment.url;
+
+	get thumb(): string {
+		return !this.user.thumb ||
+			this.user.thumb.includes('assets/default.png')
+			? 'assets/default.png'
+			: this.url + this.user.thumb;
+	}
+
 	roles = (
 		(environment as unknown as { roles: string[] }).roles || []
 	).concat(['admin']);
 
 	employees = (environment as unknown as { roles: string[] }).roles || [];
 
-	mode = '';
+	mode = 'dark';
+
+	modes = (
+		(environment as unknown as { modes: string[] }).modes || []
+	).concat(['dark', 'white']);
 
 	users: User[] = this.getDocs();
 
@@ -28,53 +41,81 @@ export class UserService extends CrudService<User> {
 		? JSON.parse(localStorage.getItem('waw_user') as string)
 		: this.new();
 
+	usersByRole: Record<string, User[]> = {};
+
 	constructor(
-		_http: HttpService,
-		_store: StoreService,
-		_alert: AlertService,
-		_core: CoreService,
+		private _http: HttpService,
+		private _store: StoreService,
+		private _alert: AlertService,
+		private _core: CoreService,
 		private _router: Router
 	) {
-		super(
-			{
-				name: 'user'
-			},
-			_http,
-			_store,
-			_alert,
-			_core
-		);
+		super({
+			name: 'user',
+			replace: (user) => {
+				user.roles = [];
 
-		this.store = _store;
+				user.data = user.data || {};
 
-		this.http = _http;
+				for (const field of (
+					environment as unknown as { userFields: string[] }
+				).userFields || []) {
+					user.data[field] = user.data[field] || {};
+				}
 
-		this.alert = _alert;
+				for (const role of this.roles) {
+					if (user.is[role]) {
+						user.roles.push(role);
+					}
+				}
 
-		this.core = _core;
+				return user;
+			}
+		});
 
-		if (this.http.header('token')) {
-			this.fetch({}, { name: 'me' }).subscribe(this.setUser.bind(this));
+		this.filteredDocuments(this.usersByRole, 'roles');
 
-			this.get();
-		}
+		this.fetch({}, { name: 'me' }).subscribe((user) => {
+			if (user) {
+				if (
+					!localStorage.getItem('waw_user') &&
+					this._router.url === '/sign'
+				) {
+					this._router.navigateByUrl('/profile');
+				}
 
-		this.store.get('mode', (mode) => {
+				this.setUser(user);
+			} else if (localStorage.getItem('waw_user')) {
+				this.logout();
+			}
+		});
+
+		this.get({
+			query: environment.appId ? 'appId=' + environment.appId : ''
+		});
+
+		this._store.get('mode', (mode) => {
 			if (mode) {
 				this.setMode(mode);
+			} else {
+				this.setMode('dark');
 			}
 		});
 	}
 
-	setMode(mode = ''): void {
-		if (mode) {
-			this.store.set('mode', mode);
+	setMode(mode = 'white'): void {
+		if (mode === 'white') {
+			this._store.remove('mode');
+
+			for (const localmode of this.modes) {
+				(document.body.parentNode as HTMLElement).classList.remove(
+					localmode
+				);
+			}
+		} else {
+			this._store.set('mode', mode);
 
 			(document.body.parentNode as HTMLElement).classList.add(mode);
-		} else {
-			this.store.remove('mode');
-
-			(document.body.parentNode as HTMLElement).classList.remove('dark');
 		}
 
 		this.mode = mode;
@@ -85,7 +126,7 @@ export class UserService extends CrudService<User> {
 
 		localStorage.setItem('waw_user', JSON.stringify(user));
 
-		this.core.complete('us.user');
+		this._core.complete('us.user');
 	}
 
 	role(role: string): boolean {
@@ -109,7 +150,7 @@ export class UserService extends CrudService<User> {
 
 		this._changingPassword = true;
 
-		this.http.post(
+		this._http.post(
 			'/api/user/changePassword',
 			{
 				newPass: newPass,
@@ -119,11 +160,11 @@ export class UserService extends CrudService<User> {
 				this._changingPassword = false;
 
 				if (resp) {
-					this.alert.info({
+					this._alert.info({
 						text: 'Successfully changed password'
 					});
 				} else {
-					this.alert.error({
+					this._alert.error({
 						text: 'Incorrect current password'
 					});
 				}
@@ -136,9 +177,11 @@ export class UserService extends CrudService<User> {
 
 		localStorage.removeItem('waw_user');
 
-		this._router.navigateByUrl('/sign');
+		this._http.remove('token');
 
-		this.http.remove('token');
+		this._http.get('/api/user/logout');
+
+		this._router.navigateByUrl('/sign');
 
 		setTimeout(() => {
 			location.reload();
@@ -158,12 +201,4 @@ export class UserService extends CrudService<User> {
 	}
 
 	private _changingPassword = false;
-
-	private http: HttpService;
-
-	private store: StoreService;
-
-	private alert: AlertService;
-
-	private core: CoreService;
 }

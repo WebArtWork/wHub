@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Commerceproduct } from '../interfaces/commerceproduct.interface';
-import {
-	AlertService,
-	CoreService,
-	HttpService,
-	StoreService,
-	CrudService
-} from 'wacom';
+import { CoreService, CrudService } from 'wacom';
 
 @Injectable({
 	providedIn: 'root'
@@ -16,25 +10,14 @@ export class CommerceproductService extends CrudService<Commerceproduct> {
 
 	commerceproductsByCommerce: Record<string, Commerceproduct[]> = {};
 
-	constructor(
-		_http: HttpService,
-		_store: StoreService,
-		_alert: AlertService,
-		_core: CoreService
-	) {
-		super(
-			{
-				name: 'commerceproduct'
-			},
-			_http,
-			_store,
-			_alert,
-			_core
-		);
+	constructor(private _core: CoreService) {
+		super({
+			name: 'commerceproduct'
+		});
 
 		this.get();
 
-		_core.on('wipe').subscribe(this.get.bind(this));
+		this._core.on('wipe').subscribe(this.get.bind(this));
 
 		this.filteredDocuments(this.commerceproductsByCommerce, 'commerce');
 	}
