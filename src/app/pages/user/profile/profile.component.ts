@@ -5,6 +5,7 @@ import { FormService } from 'src/app/core/modules/form/form.service';
 import { environment } from 'src/environments/environment';
 import { Component } from '@angular/core';
 import { CoreService } from 'wacom';
+import { FormComponentInterface } from 'src/app/core/modules/form/interfaces/component.interface';
 
 interface ChangePassword {
 	oldPass: string;
@@ -12,10 +13,10 @@ interface ChangePassword {
 }
 
 @Component({
-    selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss'],
-    standalone: false
+	selector: 'app-profile',
+	templateUrl: './profile.component.html',
+	styleUrls: ['./profile.component.scss'],
+	standalone: false
 })
 export class ProfileComponent {
 	readonly url = environment.url;
@@ -85,7 +86,12 @@ export class ProfileComponent {
 						value: true
 					}
 				]
-			}
+			},
+			...((
+				environment as unknown as {
+					userForm?: FormComponentInterface[];
+				}
+			).userForm || [])
 		]
 	});
 

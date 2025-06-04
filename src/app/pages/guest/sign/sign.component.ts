@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
-import { AlertService, CoreService, HashService, HttpService, UiService } from 'wacom';
+import {
+	AlertService,
+	CoreService,
+	HashService,
+	HttpService,
+	UiService
+} from 'wacom';
 import { Router } from '@angular/router';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { TranslateService } from 'src/app/core/modules/translate/translate.service';
 import { UserService } from 'src/app/modules/user/services/user.service';
 import { User } from 'src/app/modules/user/interfaces/user.interface';
+import { environment } from 'src/environments/environment';
 
 interface RespStatus {
 	email: string;
@@ -13,9 +20,9 @@ interface RespStatus {
 }
 
 @Component({
-    templateUrl: './sign.component.html',
-    styleUrls: ['./sign.component.scss'],
-    standalone: false
+	templateUrl: './sign.component.html',
+	styleUrls: ['./sign.component.scss'],
+	standalone: false
 })
 export class SignComponent {
 	form: FormInterface = this._form.getForm('sign', {
@@ -90,11 +97,7 @@ export class SignComponent {
 		]
 	});
 
-	user = {
-		email: 'demo@webart.work',
-		password: 'asdasdasdasd',
-		resetPin: null
-	};
+	user = environment.user;
 
 	constructor(
 		private _translate: TranslateService,
