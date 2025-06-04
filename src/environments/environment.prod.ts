@@ -1,3 +1,5 @@
+import { languages } from 'src/app/core/modules/translate/languages';
+
 export const environment = {
 	roles: [],
 	production: true,
@@ -18,6 +20,28 @@ export const environment = {
 	},
 	userFields: [],
 	userForm: [
+		{
+			name: 'Select',
+			key: 'languages',
+			fields: [
+				{
+					name: 'Label',
+					value: 'City'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Fill languages on which you can talk'
+				},
+				{
+					name: 'Multiple',
+					value: true
+				},
+				{
+					name: 'Items',
+					value: languages
+				}
+			]
+		},
 		...['developer', 'designer', 'agent'].map((position) => {
 			return {
 				name: 'Boolean',
