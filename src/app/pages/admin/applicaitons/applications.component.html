@@ -1,0 +1,14 @@
+<wtable
+	title="Applications"
+	[columns]="columns"
+	[config]="config"
+	[rows]="documents"
+>
+	<ng-template
+		*ngFor="let role of ['developer', 'designer', 'agent']"
+		[cell]="role"
+		let-element
+	>
+		{{element.is[role]}}
+	</ng-template>
+</wtable>

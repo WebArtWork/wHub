@@ -19,7 +19,6 @@ import { environment } from 'src/environments/environment';
 import { CustomformService } from 'src/app/modules/customform/services/customform.service';
 
 export interface FormModalButton {
-	/** Function to execute on button click */
 	click: (submition: unknown, close: () => void) => void;
 	/** Label for the button */
 	label: string;

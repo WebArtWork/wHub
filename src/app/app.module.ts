@@ -135,6 +135,19 @@ const routes: Routes = [
 		children: [
 			/* admin */
 			{
+				path: 'applicaitons',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Applicaitons'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./pages/admin/applicaitons/applications.routes'
+					).then((r) => r.applicationsRoutes)
+			},
+			{
 				path: 'interns',
 				canActivate: [MetaGuard],
 				data: {
