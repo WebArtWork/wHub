@@ -223,9 +223,12 @@ const routes: Routes = [
 			meta: {
 				useTitleSuffix: true,
 				defaults: {
-					title: 'Web Art Work',
-					titleSuffix: ' | Web Art Work',
-					'og:image': 'https://webart.work/api/user/cdn/waw-logo.png'
+					title: environment.meta.title,
+					description: environment.meta.description,
+					'og:image': environment.meta.image,
+					image: environment.meta.image,
+					icon: environment.meta.icon,
+					titleSuffix: ' | ' + environment.meta.suffix
 				}
 			},
 			modal: {
