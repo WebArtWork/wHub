@@ -49,6 +49,36 @@ const routes: Routes = [
 		children: [
 			/* user */
 			{
+				path: 'professions',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Professions'
+					}
+				},
+				loadChildren: () => import('./modules/userprofession/pages/professions/professions.module').then(m => m.ProfessionsModule)
+			}, 
+			{
+				path: 'skills',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Skills'
+					}
+				},
+				loadChildren: () => import('./modules/userskill/pages/skills/skills.module').then(m => m.SkillsModule)
+			}, 
+			{
+				path: 'tools',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Tools'
+					}
+				},
+				loadChildren: () => import('./modules/usertool/pages/tools/tools.module').then(m => m.ToolsModule)
+			}, 
+			{
 				path: 'fields',
 				canActivate: [MetaGuard],
 				data: {

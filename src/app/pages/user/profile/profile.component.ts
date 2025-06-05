@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
 import { Component } from '@angular/core';
 import { CoreService } from 'wacom';
 import { FormComponentInterface } from 'src/app/core/modules/form/interfaces/component.interface';
+import { UsertoolService } from 'src/app/modules/usertool/services/usertool.service';
+import { UserskillService } from 'src/app/modules/userskill/services/userskill.service';
+import { UserprofessionService } from 'src/app/modules/userprofession/services/userprofession.service';
 
 interface ChangePassword {
 	oldPass: string;
@@ -24,15 +27,25 @@ export class ProfileComponent {
 	constructor(
 		private _form: FormService,
 		private _core: CoreService,
-		public us: UserService
+		public us: UserService,
+		private _toolService: UsertoolService, // just to make sure form is filled
+		private _skillService: UserskillService, // just to make sure form is filled
+		private _professionService: UserprofessionService // just to make sure form is filled
 	) {
-		this._core.onComplete('us.user').then(() => {
-			const user = {};
+		this._core
+			.onComplete([
+				'us.user',
+				'usertool_loaded',
+				'userskill_loaded',
+				'userprofession_loaded'
+			])
+			.then(() => {
+				const user = {};
 
-			this._core.copy(this.us.user, user);
+				this._core.copy(this.us.user, user);
 
-			this.user = user;
-		});
+				this.user = user;
+			});
 	}
 
 	// Update user profile

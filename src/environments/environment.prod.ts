@@ -21,12 +21,114 @@ export const environment = {
 	userFields: [],
 	userForm: [
 		{
+			name: 'Text',
+			key: 'data.role',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Role'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Enter roles which you can hold ...'
+				},
+				{
+					name: 'Textarea',
+					value: true
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'data.city',
+			fields: [
+				{
+					name: 'Label',
+					value: 'City'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Enter city where you live ...'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'data.upwork',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Upwork'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Enter upwork profile url ...'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'data.github',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Github'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Enter github profile url ...'
+				}
+			]
+		},
+		{
+			name: 'Number',
+			key: 'data.fulltime_salary',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Full time salary'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Enter your full time salary ...'
+				}
+			]
+		},
+		{
+			name: 'Number',
+			key: 'data.parttime_salary',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Part time salary'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Enter your part time salary ...'
+				}
+			]
+		},
+		{
+			name: 'Number',
+			key: 'data.hourlytime_salary',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Hourly salary'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Enter your hourly salary ...'
+				}
+			]
+		},
+		{
 			name: 'Select',
 			key: 'languages',
 			fields: [
 				{
 					name: 'Label',
-					value: 'City'
+					value: 'Language'
 				},
 				{
 					name: 'Placeholder',
@@ -37,8 +139,79 @@ export const environment = {
 					value: true
 				},
 				{
+					name: 'Value',
+					skipTranslation: true,
+					value: 'name'
+				},
+				{
 					name: 'Items',
 					value: languages
+				}
+			]
+		},
+		{
+			name: 'Select',
+			key: 'professions',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Professions'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Fill professions which you have'
+				},
+				{
+					name: 'Multiple',
+					value: true
+				},
+				{
+					name: 'Items',
+					value: []
+				}
+			]
+		},
+		{
+			name: 'Select',
+			key: 'skills',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Skills'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Fill skills which you have'
+				},
+				{
+					name: 'Multiple',
+					value: true
+				},
+				{
+					name: 'Items',
+					value: []
+				}
+			]
+		},
+		{
+			name: 'Select',
+			key: 'tools',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Tools'
+				},
+				{
+					name: 'Placeholder',
+					value: 'Fill tools with which you can work'
+				},
+				{
+					name: 'Multiple',
+					value: true
+				},
+				{
+					name: 'Items',
+					value: []
 				}
 			]
 		},
