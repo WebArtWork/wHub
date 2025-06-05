@@ -1,14 +1,10 @@
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { UserService } from 'src/app/modules/user/services/user.service';
-import { User } from 'src/app/modules/user/interfaces/user.interface';
 import { FormService } from 'src/app/core/modules/form/form.service';
 import { environment } from 'src/environments/environment';
 import { Component } from '@angular/core';
 import { CoreService } from 'wacom';
-import { FormComponentInterface } from 'src/app/core/modules/form/interfaces/component.interface';
-import { UsertoolService } from 'src/app/modules/usertool/services/usertool.service';
-import { UserskillService } from 'src/app/modules/userskill/services/userskill.service';
-import { UserprofessionService } from 'src/app/modules/userprofession/services/userprofession.service';
+import { userFormComponents } from 'src/app/modules/user/formcomponents/user.formcomponents';
 
 interface ChangePassword {
 	oldPass: string;
@@ -27,10 +23,7 @@ export class ProfileComponent {
 	constructor(
 		private _form: FormService,
 		private _core: CoreService,
-		public us: UserService,
-		private _toolService: UsertoolService, // just to make sure form is filled
-		private _skillService: UserskillService, // just to make sure form is filled
-		private _professionService: UserprofessionService // just to make sure form is filled
+		public us: UserService
 	) {
 		this._core
 			.onComplete([
@@ -49,64 +42,7 @@ export class ProfileComponent {
 	}
 
 	// Update user profile
-	formProfile: FormInterface = this._form.getForm('profile', {
-		formId: 'profile',
-		title: 'Profile Settings',
-		components: [
-			{
-				name: 'Text',
-				key: 'name',
-				focused: true,
-				fields: [
-					{
-						name: 'Placeholder',
-						value: 'Enter your name'
-					},
-					{
-						name: 'Label',
-						value: 'Name'
-					}
-				]
-			},
-			{
-				name: 'Text',
-				key: 'phone',
-				fields: [
-					{
-						name: 'Placeholder',
-						value: 'Enter your phone'
-					},
-					{
-						name: 'Label',
-						value: 'Phone'
-					}
-				]
-			},
-			{
-				name: 'Text',
-				key: 'bio',
-				fields: [
-					{
-						name: 'Placeholder',
-						value: 'Enter your bio'
-					},
-					{
-						name: 'Label',
-						value: 'Bio'
-					},
-					{
-						name: 'Textarea',
-						value: true
-					}
-				]
-			},
-			...((
-				environment as unknown as {
-					userForm?: FormComponentInterface[];
-				}
-			).userForm || [])
-		]
-	});
+	formProfile: FormInterface = this._form.getForm('user', userFormComponents);
 
 	user: Record<string, unknown>;
 
