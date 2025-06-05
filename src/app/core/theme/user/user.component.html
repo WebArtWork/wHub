@@ -156,7 +156,7 @@
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"
 					routerLinkActive="_activeLink"
-					routerLink="/tools"
+					routerLink="/admin/tools"
 					class="nav__burger-link"
 					*ngIf="us.role('admin')"
 					(click)="hideSidebar()"
@@ -167,7 +167,7 @@
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"
 					routerLinkActive="_activeLink"
-					routerLink="/skills"
+					routerLink="/admin/skills"
 					class="nav__burger-link"
 					*ngIf="us.role('admin')"
 					(click)="hideSidebar()"
@@ -178,7 +178,7 @@
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"
 					routerLinkActive="_activeLink"
-					routerLink="/professions"
+					routerLink="/admin/professions"
 					class="nav__burger-link"
 					*ngIf="us.role('admin')"
 					(click)="hideSidebar()"
@@ -200,12 +200,12 @@
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"
 					routerLinkActive="_activeLink"
-					routerLink="/contacts"
+					routerLink="/contracts"
 					class="nav__burger-link"
 					(click)="hideSidebar()"
 				>
 					<span class="material-icons">email</span>
-					<span translate>Theme.Contacts</span>
+					<span translate>Theme.Contracts</span>
 				</a>
 				<hr />
 			</div>

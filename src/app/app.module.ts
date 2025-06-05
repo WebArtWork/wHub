@@ -49,35 +49,31 @@ const routes: Routes = [
 		children: [
 			/* user */
 			{
-				path: 'professions',
+				path: 'contracts',
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Professions'
+						title: 'Contracts'
 					}
 				},
-				loadChildren: () => import('./modules/userprofession/pages/professions/professions.module').then(m => m.ProfessionsModule)
-			}, 
+				loadChildren: () =>
+					import(
+						'./modules/usercontract/pages/contracts/contracts.routes'
+					).then((r) => r.contractsRoutes)
+			},
 			{
-				path: 'skills',
+				path: 'portfolios',
 				canActivate: [MetaGuard],
 				data: {
 					meta: {
-						title: 'Skills'
+						title: 'Portfolios'
 					}
 				},
-				loadChildren: () => import('./modules/userskill/pages/skills/skills.module').then(m => m.SkillsModule)
-			}, 
-			{
-				path: 'tools',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Tools'
-					}
-				},
-				loadChildren: () => import('./modules/usertool/pages/tools/tools.module').then(m => m.ToolsModule)
-			}, 
+				loadChildren: () =>
+					import(
+						'./modules/userportfolio/pages/portfolios/portfolios.routes'
+					).then((r) => r.portfoliosRoutes)
+			},
 			{
 				path: 'fields',
 				canActivate: [MetaGuard],
@@ -164,6 +160,45 @@ const routes: Routes = [
 		component: UserComponent,
 		children: [
 			/* admin */
+			{
+				path: 'professions',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Professions'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./modules/userprofession/pages/professions/professions.module'
+					).then((m) => m.ProfessionsModule)
+			},
+			{
+				path: 'skills',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Skills'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./modules/userskill/pages/skills/skills.module'
+					).then((m) => m.SkillsModule)
+			},
+			{
+				path: 'tools',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Tools'
+					}
+				},
+				loadChildren: () =>
+					import('./modules/usertool/pages/tools/tools.module').then(
+						(m) => m.ToolsModule
+					)
+			},
 			{
 				path: 'applicaitons',
 				canActivate: [MetaGuard],
