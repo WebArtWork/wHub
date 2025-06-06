@@ -207,17 +207,17 @@
 
 						<!-- Edit and Delete buttons -->
 						<i
+							(click)="config.update(row)"
 							class="material-icons"
 							*ngIf="config.update"
-							(click)="config.update(row)"
 							title="Edit"
 						>
 							edit
 						</i>
 						<i
+							(click)="config.delete(row)"
 							class="material-icons"
 							*ngIf="config.delete"
-							(click)="config.delete(row)"
 							title="Delete"
 						>
 							delete_outline

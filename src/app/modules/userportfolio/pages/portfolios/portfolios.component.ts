@@ -35,8 +35,6 @@ export class PortfoliosComponent extends CrudComponent<
 			_userportfolioService
 		);
 
-		console.log(this.config);
-
 		this.setDocuments();
 	}
 }

@@ -1,5 +1,7 @@
-@import 'angular';
-@import '/src/scss/utils/vars';
+@use 'angular';
+@use '/src/scss/utils/vars' as *;
+@use '/src/scss/utils/mixins' as *;
+@use '/src/scss/utils/media' as *;
 
 :host {
 	width: 100%;
