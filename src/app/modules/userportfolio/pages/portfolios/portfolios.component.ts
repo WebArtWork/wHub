@@ -37,4 +37,17 @@ export class PortfoliosComponent extends CrudComponent<
 
 		this.setDocuments();
 	}
+
+	override updatableFields = [
+		'_id',
+		'thumb',
+		'thumbs',
+		'name',
+		'description',
+		'languages',
+		'professions',
+		'tools',
+		'skills',
+		'data'
+	];
 }

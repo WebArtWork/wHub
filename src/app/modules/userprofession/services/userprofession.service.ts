@@ -3,6 +3,7 @@ import { Userprofession } from '../interfaces/userprofession.interface';
 import { CrudService } from 'wacom';
 import { environment } from 'src/environments/environment.prod';
 import { userportfolioFormComponents } from '../../userportfolio/formcomponents/userportfolio.formcomponents';
+import { userFormComponents } from '../../user/formcomponents/user.formcomponents';
 
 @Injectable({
 	providedIn: 'root'
@@ -19,8 +20,8 @@ export class UserprofessionService extends CrudService<Userprofession> {
 
 		this.get().subscribe(() => {
 			(
-				environment.userForm.find((c) => c.key === 'professions')
-					?.fields[3].value as Array<unknown>
+				userFormComponents.components.find((c) => c.key === 'tools')
+					?.fields?.[3].value as Array<unknown>
 			).push(...this.userprofessions);
 
 			(
@@ -28,14 +29,6 @@ export class UserprofessionService extends CrudService<Userprofession> {
 					(c) => c.key === 'professions'
 				)?.fields[3].value as Array<unknown>
 			).push(...this.userprofessions);
-
-			console.log(
-				environment.userForm.find((c) => c.key === 'professions'),
-				this.userprofessions,
-				userportfolioFormComponents.components.find(
-					(c) => c.key === 'professions'
-				)
-			);
 		});
 
 		this.filteredDocuments(this.userprofessionsByAuthor);
