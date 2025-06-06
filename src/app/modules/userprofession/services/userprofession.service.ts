@@ -28,6 +28,14 @@ export class UserprofessionService extends CrudService<Userprofession> {
 					(c) => c.key === 'professions'
 				)?.fields[3].value as Array<unknown>
 			).push(...this.userprofessions);
+
+			console.log(
+				environment.userForm.find((c) => c.key === 'professions'),
+				this.userprofessions,
+				userportfolioFormComponents.components.find(
+					(c) => c.key === 'professions'
+				)
+			);
 		});
 
 		this.filteredDocuments(this.userprofessionsByAuthor);

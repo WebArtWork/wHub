@@ -23,6 +23,14 @@ export class UsertoolService extends CrudService<Usertool> {
 					.value as Array<unknown>
 			).push(...this.usertools);
 
+			console.log(
+				environment.userForm.find((c) => c.key === 'tools'),
+				this.usertools,
+				userportfolioFormComponents.components.find(
+					(c) => c.key === 'tools'
+				)
+			);
+
 			(
 				userportfolioFormComponents.components.find(
 					(c) => c.key === 'tools'

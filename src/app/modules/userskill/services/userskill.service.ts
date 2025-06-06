@@ -28,6 +28,14 @@ export class UserskillService extends CrudService<Userskill> {
 					(c) => c.key === 'skills'
 				)?.fields[3].value as Array<unknown>
 			).push(...this.userskills);
+
+			console.log(
+				environment.userForm.find((c) => c.key === 'skills'),
+				this.userskills,
+				userportfolioFormComponents.components.find(
+					(c) => c.key === 'skills'
+				)
+			);
 		});
 
 		this.filteredDocuments(this.userskillsByAuthor);
