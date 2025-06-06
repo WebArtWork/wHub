@@ -10,14 +10,14 @@ import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interfa
 import { FormComponentInterface } from 'src/app/core/modules/form/interfaces/component.interface';
 
 @Component({
-    templateUrl: './customforms.component.html',
-    styleUrls: ['./customforms.component.scss'],
-    standalone: false
+	templateUrl: './customforms.component.html',
+	styleUrls: ['./customforms.component.scss'],
+	standalone: false
 })
 export class CustomformsComponent {
 	columns = ['formId', 'components', 'active'];
 
-	form: FormInterface = this._form.getForm('form', {
+	form: FormInterface = this._form.prepareForm({
 		formId: 'form',
 		title: 'Custom form',
 		components: [
@@ -58,7 +58,7 @@ export class CustomformsComponent {
 	});
 
 	components: FormComponentInterface[] = [];
-	formComponents: FormInterface = this._form.getForm('formComponents', {
+	formComponents: FormInterface = this._form.prepareForm({
 		formId: 'formComponents',
 		title: 'Custom components',
 		components: [

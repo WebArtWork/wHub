@@ -8,14 +8,14 @@ import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interfa
 import { commerceFormComponents } from '../../formcomponents/commerce.formcomponents';
 
 @Component({
-    templateUrl: './commerces.component.html',
-    styleUrls: ['./commerces.component.scss'],
-    standalone: false
+	templateUrl: './commerces.component.html',
+	styleUrls: ['./commerces.component.scss'],
+	standalone: false
 })
 export class CommercesComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('commerce', commerceFormComponents);
+	form: FormInterface = this._form.prepareForm(commerceFormComponents);
 
 	config = {
 		create: (): void => {
@@ -29,11 +29,13 @@ export class CommercesComponent {
 			});
 		},
 		update: (doc: Commerce): void => {
-			this._form.modal<Commerce>(this.form, [], doc).then((updated: Commerce) => {
-				this._core.copy(updated, doc);
+			this._form
+				.modal<Commerce>(this.form, [], doc)
+				.then((updated: Commerce) => {
+					this._core.copy(updated, doc);
 
-				this._commerceService.update(doc);
-			});
+					this._commerceService.update(doc);
+				});
 		},
 		delete: (doc: Commerce): void => {
 			this._alert.question({

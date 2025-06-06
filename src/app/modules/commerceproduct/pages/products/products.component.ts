@@ -9,9 +9,9 @@ import { commerceproductFormComponents } from '../../formcomponents/commerceprod
 import { Router } from '@angular/router';
 
 @Component({
-    templateUrl: './products.component.html',
-    styleUrls: ['./products.component.scss'],
-    standalone: false
+	templateUrl: './products.component.html',
+	styleUrls: ['./products.component.scss'],
+	standalone: false
 })
 export class ProductsComponent {
 	commerce = this._router.url.includes('/products/')
@@ -20,10 +20,7 @@ export class ProductsComponent {
 
 	columns = ['name', 'price'];
 
-	form: FormInterface = this._form.getForm(
-		'commerceproduct',
-		commerceproductFormComponents
-	);
+	form: FormInterface = this._form.prepareForm(commerceproductFormComponents);
 
 	config = {
 		create: (): void => {
@@ -75,13 +72,13 @@ export class ProductsComponent {
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
+				class: 'edit'
+			}
 		],
 		buttons: [
 			{
@@ -127,16 +124,20 @@ export class ProductsComponent {
 						}
 					} else {
 						for (const practice of this.rows) {
-							if (!products.find(
-								localPractice => localPractice._id === practice._id
-							)) {
+							if (
+								!products.find(
+									(localPractice) =>
+										localPractice._id === practice._id
+								)
+							) {
 								this._cps.delete(practice);
 							}
 						}
 
 						for (const practice of products) {
 							const localPractice = this.rows.find(
-								localPractice => localPractice._id === practice._id
+								(localPractice) =>
+									localPractice._id === practice._id
 							);
 
 							if (localPractice) {

@@ -15,7 +15,7 @@ import { parseFormComponents } from '../../formcomponents/parse.formcomponents';
 export class ParsesComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('parse', parseFormComponents);
+	form: FormInterface = this._form.prepareForm(parseFormComponents);
 
 	config = {
 		create: (): void => {

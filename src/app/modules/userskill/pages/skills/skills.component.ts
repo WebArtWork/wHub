@@ -10,12 +10,12 @@ import { userskillFormComponents } from '../../formcomponents/userskill.formcomp
 @Component({
 	templateUrl: './skills.component.html',
 	styleUrls: ['./skills.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class SkillsComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('userskill', userskillFormComponents);
+	form: FormInterface = this._form.prepareForm(userskillFormComponents);
 
 	config = {
 		create: (): void => {
@@ -27,7 +27,7 @@ export class SkillsComponent {
 					this._userskillService.create(created as Userskill);
 
 					close();
-				},
+				}
 			});
 		},
 		update: (doc: Userskill): void => {
@@ -46,15 +46,15 @@ export class SkillsComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: (): void => {
 							this._userskillService.delete(doc);
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
@@ -62,21 +62,21 @@ export class SkillsComponent {
 				icon: 'cloud_download',
 				click: (doc: Userskill): void => {
 					this._form.modalUnique<Userskill>('userskill', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	get rows(): Userskill[] {
@@ -106,7 +106,8 @@ export class SkillsComponent {
 						for (const userskill of this.rows) {
 							if (
 								!userskills.find(
-									(localUserskill) => localUserskill._id === userskill._id
+									(localUserskill) =>
+										localUserskill._id === userskill._id
 								)
 							) {
 								this._userskillService.delete(userskill);
@@ -115,7 +116,8 @@ export class SkillsComponent {
 
 						for (const userskill of userskills) {
 							const localUserskill = this.rows.find(
-								(localUserskill) => localUserskill._id === userskill._id
+								(localUserskill) =>
+									localUserskill._id === userskill._id
 							);
 
 							if (localUserskill) {

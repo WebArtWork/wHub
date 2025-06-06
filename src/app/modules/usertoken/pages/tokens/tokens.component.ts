@@ -8,17 +8,14 @@ import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interfa
 import { usertokenFormComponents } from '../../formcomponents/usertoken.formcomponents';
 
 @Component({
-    templateUrl: './tokens.component.html',
-    styleUrls: ['./tokens.component.scss'],
-    standalone: false
+	templateUrl: './tokens.component.html',
+	styleUrls: ['./tokens.component.scss'],
+	standalone: false
 })
 export class TokensComponent {
 	columns = ['token', 'created'];
 
-	form: FormInterface = this._form.getForm(
-		'usertoken',
-		usertokenFormComponents
-	);
+	form: FormInterface = this._form.prepareForm(usertokenFormComponents);
 
 	config = {
 		create: (): void => {

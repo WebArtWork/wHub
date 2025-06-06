@@ -37,10 +37,7 @@ export class ProfileComponent {
 
 				this._core.copy(this.us.user, user);
 
-				this.formProfile = this._form.getForm(
-					'user',
-					userFormComponents
-				);
+				this.formProfile = this._form.prepareForm(userFormComponents);
 
 				this.user = user;
 			});
@@ -58,7 +55,7 @@ export class ProfileComponent {
 	}
 
 	// Update user password
-	formPassword: FormInterface = this._form.getForm('change password', {
+	formPassword: FormInterface = this._form.prepareForm({
 		formId: 'change password',
 		title: 'Change password',
 		components: [

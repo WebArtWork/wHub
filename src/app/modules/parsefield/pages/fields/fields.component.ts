@@ -15,7 +15,7 @@ import { parsefieldFormComponents } from '../../formcomponents/parsefield.formco
 export class FieldsComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('parsefield', parsefieldFormComponents);
+	form: FormInterface = this._form.prepareForm(parsefieldFormComponents);
 
 	config = {
 		create: (): void => {
@@ -31,11 +31,13 @@ export class FieldsComponent {
 			});
 		},
 		update: (doc: Parsefield): void => {
-			this._form.modal<Parsefield>(this.form, [], doc).then((updated: Parsefield) => {
-				this._core.copy(updated, doc);
+			this._form
+				.modal<Parsefield>(this.form, [], doc)
+				.then((updated: Parsefield) => {
+					this._core.copy(updated, doc);
 
-				this._parsefieldService.update(doc);
-			});
+					this._parsefieldService.update(doc);
+				});
 		},
 		delete: (doc: Parsefield): void => {
 			this._alert.question({
@@ -59,7 +61,11 @@ export class FieldsComponent {
 			{
 				icon: 'cloud_download',
 				click: (doc: Parsefield): void => {
-					this._form.modalUnique<Parsefield>('parsefield', 'url', doc);
+					this._form.modalUnique<Parsefield>(
+						'parsefield',
+						'url',
+						doc
+					);
 				}
 			}
 		],
@@ -67,13 +73,13 @@ export class FieldsComponent {
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
+				class: 'edit'
+			}
 		]
 	};
 
@@ -102,16 +108,20 @@ export class FieldsComponent {
 						}
 					} else {
 						for (const parsefield of this.rows) {
-							if (!parsefields.find(
-								localParsefield => localParsefield._id === parsefield._id
-							)) {
+							if (
+								!parsefields.find(
+									(localParsefield) =>
+										localParsefield._id === parsefield._id
+								)
+							) {
 								this._parsefieldService.delete(parsefield);
 							}
 						}
 
 						for (const parsefield of parsefields) {
 							const localParsefield = this.rows.find(
-								localParsefield => localParsefield._id === parsefield._id
+								(localParsefield) =>
+									localParsefield._id === parsefield._id
 							);
 
 							if (localParsefield) {

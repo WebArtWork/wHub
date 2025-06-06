@@ -15,7 +15,7 @@ import { practiceFormComponents } from '../../formcomponents/practice.formcompon
 export class InternsComponent {
 	columns = ['inc', 'thumb', 'name', 'url'];
 
-	form: FormInterface = this._form.getForm('practice', practiceFormComponents);
+	form: FormInterface = this._form.prepareForm(practiceFormComponents);
 
 	config = {
 		create: (): void => {
@@ -29,11 +29,13 @@ export class InternsComponent {
 			});
 		},
 		update: (doc: Practice): void => {
-			this._form.modal<Practice>(this.form, [], doc).then((updated: Practice) => {
-				this._core.copy(updated, doc);
+			this._form
+				.modal<Practice>(this.form, [], doc)
+				.then((updated: Practice) => {
+					this._core.copy(updated, doc);
 
-				this._practiceService.update(doc);
-			});
+					this._practiceService.update(doc);
+				});
 		},
 		delete: (doc: Practice): void => {
 			this._alert.question({
@@ -65,13 +67,13 @@ export class InternsComponent {
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
+				class: 'edit'
+			}
 		]
 	};
 
@@ -99,7 +101,8 @@ export class InternsComponent {
 					} else {
 						for (const practice of practices) {
 							const localPractice = this.rows.find(
-								localPractice => localPractice._id === practice._id
+								(localPractice) =>
+									localPractice._id === practice._id
 							);
 
 							if (localPractice) {

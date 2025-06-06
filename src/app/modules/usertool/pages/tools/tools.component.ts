@@ -10,12 +10,12 @@ import { usertoolFormComponents } from '../../formcomponents/usertool.formcompon
 @Component({
 	templateUrl: './tools.component.html',
 	styleUrls: ['./tools.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class ToolsComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('usertool', usertoolFormComponents);
+	form: FormInterface = this._form.prepareForm(usertoolFormComponents);
 
 	config = {
 		create: (): void => {
@@ -27,7 +27,7 @@ export class ToolsComponent {
 					this._usertoolService.create(created as Usertool);
 
 					close();
-				},
+				}
 			});
 		},
 		update: (doc: Usertool): void => {
@@ -46,15 +46,15 @@ export class ToolsComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: (): void => {
 							this._usertoolService.delete(doc);
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
@@ -62,21 +62,21 @@ export class ToolsComponent {
 				icon: 'cloud_download',
 				click: (doc: Usertool): void => {
 					this._form.modalUnique<Usertool>('usertool', 'url', doc);
-				},
-			},
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	get rows(): Usertool[] {
@@ -106,7 +106,8 @@ export class ToolsComponent {
 						for (const usertool of this.rows) {
 							if (
 								!usertools.find(
-									(localUsertool) => localUsertool._id === usertool._id
+									(localUsertool) =>
+										localUsertool._id === usertool._id
 								)
 							) {
 								this._usertoolService.delete(usertool);
@@ -115,7 +116,8 @@ export class ToolsComponent {
 
 						for (const usertool of usertools) {
 							const localUsertool = this.rows.find(
-								(localUsertool) => localUsertool._id === usertool._id
+								(localUsertool) =>
+									localUsertool._id === usertool._id
 							);
 
 							if (localUsertool) {

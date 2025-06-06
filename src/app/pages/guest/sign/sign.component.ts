@@ -25,7 +25,7 @@ interface RespStatus {
 	standalone: false
 })
 export class SignComponent {
-	form: FormInterface = this._form.getForm('sign', {
+	form: FormInterface = this._form.prepareForm({
 		formId: 'sign',
 		title: 'Sign In / Sign Up',
 		components: [

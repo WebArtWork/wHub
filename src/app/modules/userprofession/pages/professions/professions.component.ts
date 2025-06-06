@@ -10,12 +10,12 @@ import { userprofessionFormComponents } from '../../formcomponents/userprofessio
 @Component({
 	templateUrl: './professions.component.html',
 	styleUrls: ['./professions.component.scss'],
-	standalone: false,
+	standalone: false
 })
 export class ProfessionsComponent {
 	columns = ['name', 'description'];
 
-	form: FormInterface = this._form.getForm('userprofession', userprofessionFormComponents);
+	form: FormInterface = this._form.prepareForm(userprofessionFormComponents);
 
 	config = {
 		create: (): void => {
@@ -24,10 +24,12 @@ export class ProfessionsComponent {
 				click: (created: unknown, close: () => void) => {
 					this._preCreate(created as Userprofession);
 
-					this._userprofessionService.create(created as Userprofession);
+					this._userprofessionService.create(
+						created as Userprofession
+					);
 
 					close();
-				},
+				}
 			});
 		},
 		update: (doc: Userprofession): void => {
@@ -46,37 +48,41 @@ export class ProfessionsComponent {
 				),
 				buttons: [
 					{
-						text: this._translate.translate('Common.No'),
+						text: this._translate.translate('Common.No')
 					},
 					{
 						text: this._translate.translate('Common.Yes'),
 						callback: (): void => {
 							this._userprofessionService.delete(doc);
-						},
-					},
-				],
+						}
+					}
+				]
 			});
 		},
 		buttons: [
 			{
 				icon: 'cloud_download',
 				click: (doc: Userprofession): void => {
-					this._form.modalUnique<Userprofession>('userprofession', 'url', doc);
-				},
-			},
+					this._form.modalUnique<Userprofession>(
+						'userprofession',
+						'url',
+						doc
+					);
+				}
+			}
 		],
 		headerButtons: [
 			{
 				icon: 'playlist_add',
 				click: this._bulkManagement(),
-				class: 'playlist',
+				class: 'playlist'
 			},
 			{
 				icon: 'edit_note',
 				click: this._bulkManagement(false),
-				class: 'edit',
-			},
-		],
+				class: 'edit'
+			}
+		]
 	};
 
 	get rows(): Userprofession[] {
@@ -106,26 +112,39 @@ export class ProfessionsComponent {
 						for (const userprofession of this.rows) {
 							if (
 								!userprofessions.find(
-									(localUserprofession) => localUserprofession._id === userprofession._id
+									(localUserprofession) =>
+										localUserprofession._id ===
+										userprofession._id
 								)
 							) {
-								this._userprofessionService.delete(userprofession);
+								this._userprofessionService.delete(
+									userprofession
+								);
 							}
 						}
 
 						for (const userprofession of userprofessions) {
 							const localUserprofession = this.rows.find(
-								(localUserprofession) => localUserprofession._id === userprofession._id
+								(localUserprofession) =>
+									localUserprofession._id ===
+									userprofession._id
 							);
 
 							if (localUserprofession) {
-								this._core.copy(userprofession, localUserprofession);
+								this._core.copy(
+									userprofession,
+									localUserprofession
+								);
 
-								this._userprofessionService.update(localUserprofession);
+								this._userprofessionService.update(
+									localUserprofession
+								);
 							} else {
 								this._preCreate(userprofession);
 
-								this._userprofessionService.create(userprofession);
+								this._userprofessionService.create(
+									userprofession
+								);
 							}
 						}
 					}
