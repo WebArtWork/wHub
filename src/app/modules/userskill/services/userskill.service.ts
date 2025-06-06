@@ -19,13 +19,13 @@ export class UserskillService extends CrudService<Userskill> {
 
 		this.get().subscribe(() => {
 			(
-				environment.userForm.find((c) => c.key === 'tools')?.fields[3]
+				environment.userForm.find((c) => c.key === 'skills')?.fields[3]
 					.value as Array<unknown>
 			).push(...this.userskills);
 
 			(
 				userportfolioFormComponents.components.find(
-					(c) => c.key === 'tools'
+					(c) => c.key === 'skills'
 				)?.fields[3].value as Array<unknown>
 			).push(...this.userskills);
 		});

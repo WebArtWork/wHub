@@ -19,13 +19,13 @@ export class UsertoolService extends CrudService<Usertool> {
 
 		this.get().subscribe(() => {
 			(
-				environment.userForm.find((c) => c.key === 'skills')?.fields[3]
+				environment.userForm.find((c) => c.key === 'tools')?.fields[3]
 					.value as Array<unknown>
 			).push(...this.usertools);
 
 			(
 				userportfolioFormComponents.components.find(
-					(c) => c.key === 'skills'
+					(c) => c.key === 'tools'
 				)?.fields[3].value as Array<unknown>
 			).push(...this.usertools);
 		});
