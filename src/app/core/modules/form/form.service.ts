@@ -247,7 +247,7 @@ export class FormService {
 	modal<T>(
 		form: FormInterface | FormInterface[],
 		buttons: FormModalButton | FormModalButton[] = [],
-		submition: unknown = {},
+		submition: unknown = { data: {} },
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		change: (update: T) => void | Promise<(update: T) => void> = (
 			update: T
