@@ -37,12 +37,17 @@ export class ProfileComponent {
 
 				this._core.copy(this.us.user, user);
 
+				this.formProfile = this._form.getForm(
+					'user',
+					userFormComponents
+				);
+
 				this.user = user;
 			});
 	}
 
 	// Update user profile
-	formProfile: FormInterface = this._form.getForm('user', userFormComponents);
+	formProfile: FormInterface;
 
 	user: Record<string, unknown>;
 
