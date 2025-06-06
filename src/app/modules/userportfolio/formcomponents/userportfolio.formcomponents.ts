@@ -21,24 +21,6 @@ export const userportfolioFormComponents = {
 		},
 		{
 			name: 'Text',
-			key: 'data.role',
-			fields: [
-				{
-					name: 'Label',
-					value: 'Role'
-				},
-				{
-					name: 'Placeholder',
-					value: 'Enter roles which you can hold ...'
-				},
-				{
-					name: 'Textarea',
-					value: true
-				}
-			]
-		},
-		{
-			name: 'Text',
 			key: 'description',
 			fields: [
 				{

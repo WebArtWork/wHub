@@ -12,7 +12,7 @@ import { CrudComponent } from 'wacom';
 @Component({
 	imports: [CommonModule, TableModule],
 	templateUrl: './portfolios.component.html',
-	styleUrls: ['./portfolios.component.scss'],
+	styleUrls: ['./portfolios.component.scss']
 })
 export class PortfoliosComponent extends CrudComponent<
 	UserportfolioService,
@@ -21,16 +21,21 @@ export class PortfoliosComponent extends CrudComponent<
 > {
 	columns = ['name', 'description'];
 
-	config = {
-		...this.getConfig(),
-	};
+	config = this.getConfig();
 
 	constructor(
 		_userportfolioService: UserportfolioService,
 		_translate: TranslateService,
 		_form: FormService
 	) {
-		super(userportfolioFormComponents, _form, _translate, _userportfolioService);
+		super(
+			userportfolioFormComponents,
+			_form,
+			_translate,
+			_userportfolioService
+		);
+
+		console.log(this.config);
 
 		this.setDocuments();
 	}
