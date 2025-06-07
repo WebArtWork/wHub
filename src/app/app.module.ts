@@ -49,6 +49,19 @@ const routes: Routes = [
 		children: [
 			/* user */
 			{
+				path: 'birds',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Birds'
+					}
+				},
+				loadChildren: () =>
+					import('./pages/user/birds/birds.routes').then(
+						(r) => r.birdsRoutes
+					)
+			},
+			{
 				path: 'contracts',
 				canActivate: [MetaGuard],
 				data: {
@@ -161,19 +174,6 @@ const routes: Routes = [
 		children: [
 			/* admin */
 			{
-				path: 'professions',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Professions'
-					}
-				},
-				loadChildren: () =>
-					import(
-						'./modules/userprofession/pages/professions/professions.module'
-					).then((m) => m.ProfessionsModule)
-			},
-			{
 				path: 'skills',
 				canActivate: [MetaGuard],
 				data: {
@@ -183,8 +183,21 @@ const routes: Routes = [
 				},
 				loadChildren: () =>
 					import(
-						'./modules/userskill/pages/skills/skills.module'
-					).then((m) => m.SkillsModule)
+						'./modules/userskill/pages/skills/skills.routes'
+					).then((r) => r.skillsRoutes)
+			},
+			{
+				path: 'professions',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Professions'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./modules/userprofession/pages/professions/professions.routes'
+					).then((m) => m.professionsRoutes)
 			},
 			{
 				path: 'tools',
@@ -195,8 +208,8 @@ const routes: Routes = [
 					}
 				},
 				loadChildren: () =>
-					import('./modules/usertool/pages/tools/tools.module').then(
-						(m) => m.ToolsModule
+					import('./modules/usertool/pages/tools/tools.routes').then(
+						(m) => m.toolsRoutes
 					)
 			},
 			{

@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Userskill } from '../interfaces/userskill.interface';
 import { CrudService } from 'wacom';
-import { environment } from 'src/environments/environment.prod';
-import { userportfolioFormComponents } from '../../userportfolio/formcomponents/userportfolio.formcomponents';
-import { userFormComponents } from '../../user/formcomponents/user.formcomponents';
 
 @Injectable({
 	providedIn: 'root'
@@ -18,18 +15,7 @@ export class UserskillService extends CrudService<Userskill> {
 			name: 'userskill'
 		});
 
-		this.get().subscribe(() => {
-			(
-				userFormComponents.components.find((c) => c.key === 'tools')
-					?.fields?.[3].value as Array<unknown>
-			).push(...this.userskills);
-
-			(
-				userportfolioFormComponents.components.find(
-					(c) => c.key === 'skills'
-				)?.fields[3].value as Array<unknown>
-			).push(...this.userskills);
-		});
+		this.get();
 
 		this.filteredDocuments(this.userskillsByAuthor);
 	}
