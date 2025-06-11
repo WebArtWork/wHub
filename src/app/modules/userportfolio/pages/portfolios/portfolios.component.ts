@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserportfolioService } from '../../services/userportfolio.service';
-import { Userportfolio } from '../../interfaces/userportfolio.interface';
+import { Component } from '@angular/core';
 import { FormService } from 'src/app/core/modules/form/form.service';
-import { TranslateService } from 'src/app/core/modules/translate/translate.service';
-import { userportfolioFormComponents } from '../../formcomponents/userportfolio.formcomponents';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { TableModule } from 'src/app/core/modules/table/table.module';
+import { TranslateService } from 'src/app/core/modules/translate/translate.service';
 import { CrudComponent } from 'wacom';
+import { userportfolioFormComponents } from '../../formcomponents/userportfolio.formcomponents';
+import { Userportfolio } from '../../interfaces/userportfolio.interface';
+import { UserportfolioService } from '../../services/userportfolio.service';
 
 @Component({
 	imports: [CommonModule, TableModule],
