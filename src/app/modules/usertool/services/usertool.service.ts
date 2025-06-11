@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Usertool } from '../interfaces/usertool.interface';
 import { CrudService } from 'wacom';
+import { userFormComponents } from '../../user/formcomponents/user.formcomponents';
+import { userportfolioFormComponents } from '../../userportfolio/formcomponents/userportfolio.formcomponents';
+import { Usertool } from '../interfaces/usertool.interface';
 
 @Injectable({
-	providedIn: 'root',
+	providedIn: 'root'
 })
 export class UsertoolService extends CrudService<Usertool> {
 	usertools: Usertool[] = this.getDocs();
@@ -12,10 +14,21 @@ export class UsertoolService extends CrudService<Usertool> {
 
 	constructor() {
 		super({
-			name: 'usertool',
+			name: 'usertool'
 		});
 
-		this.get();
+		this.get().subscribe(() => {
+			(
+				userFormComponents.components.find((c) => c.key === 'tools')
+					?.fields?.[3].value as Array<unknown>
+			).push(...this.usertools);
+
+			(
+				userportfolioFormComponents.components.find(
+					(c) => c.key === 'tools'
+				)?.fields[3].value as Array<unknown>
+			).push(...this.usertools);
+		});
 
 		this.filteredDocuments(this.usertoolsByAuthor);
 	}

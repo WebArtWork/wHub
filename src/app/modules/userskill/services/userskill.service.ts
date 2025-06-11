@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Userskill } from '../interfaces/userskill.interface';
 import { CrudService } from 'wacom';
+import { userFormComponents } from '../../user/formcomponents/user.formcomponents';
+import { userportfolioFormComponents } from '../../userportfolio/formcomponents/userportfolio.formcomponents';
+import { Userskill } from '../interfaces/userskill.interface';
 
 @Injectable({
 	providedIn: 'root'
@@ -15,7 +17,18 @@ export class UserskillService extends CrudService<Userskill> {
 			name: 'userskill'
 		});
 
-		this.get();
+		this.get().subscribe(() => {
+			(
+				userFormComponents.components.find((c) => c.key === 'skills')
+					?.fields?.[3].value as Array<unknown>
+			).push(...this.userskills);
+
+			(
+				userportfolioFormComponents.components.find(
+					(c) => c.key === 'skills'
+				)?.fields[3].value as Array<unknown>
+			).push(...this.userskills);
+		});
 
 		this.filteredDocuments(this.userskillsByAuthor);
 	}

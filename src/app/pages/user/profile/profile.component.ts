@@ -1,10 +1,10 @@
-import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
-import { UserService } from 'src/app/modules/user/services/user.service';
-import { FormService } from 'src/app/core/modules/form/form.service';
-import { environment } from 'src/environments/environment';
 import { Component } from '@angular/core';
-import { CoreService } from 'wacom';
+import { FormService } from 'src/app/core/modules/form/form.service';
+import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { userFormComponents } from 'src/app/modules/user/formcomponents/user.formcomponents';
+import { UserService } from 'src/app/modules/user/services/user.service';
+import { environment } from 'src/environments/environment';
+import { CoreService } from 'wacom';
 
 interface ChangePassword {
 	oldPass: string;
