@@ -26,17 +26,9 @@
 				<div class="theme-switch">
 					<span
 						class="material-icons"
-						*ngIf="!us.mode"
-						(click)="us.setMode('dark')"
+						(click)="us.setMode(us.mode === 'dark' ? 'white': 'dark')"
 					>
-						dark_mode
-					</span>
-					<span
-						class="material-icons"
-						*ngIf="us.mode"
-						(click)="us.setMode()"
-					>
-						light_mode
+						{{us.mode === 'dark' ? 'dark_mode': 'light_mode'}}
 					</span>
 				</div>
 				<a
