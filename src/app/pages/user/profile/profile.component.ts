@@ -91,6 +91,42 @@ export class ProfileComponent {
 		]
 	});
 
+	// Update user password
+	formApplication: FormInterface = this._form.prepareForm({
+		formId: 'userApplication',
+		title: 'Apply for role',
+		components: [
+			...environment.applyRoles.map((position) => {
+				return {
+					name: 'Boolean',
+					key: 'data.apply' + position,
+					fields: [
+						{
+							name: 'Label',
+							value: 'Apply for ' + position
+						}
+					]
+				};
+			})
+		]
+	});
+
+	apply(): void {
+		this._form.modal<ChangePassword>(
+			this.formApplication,
+			{
+				label: 'Change',
+				click: (submition: unknown, close: () => void) => {
+					console.log(submition);
+					close();
+
+					this.us.updateMe();
+				}
+			},
+			this.us.user
+		);
+	}
+
 	changePassword(): void {
 		this._form
 			.modal<ChangePassword>(this.formPassword, {

@@ -196,18 +196,7 @@ export const environment = {
 					value: []
 				}
 			]
-		},
-		...['developer', 'designer', 'agent'].map((position) => {
-			return {
-				name: 'Boolean',
-				key: 'data.apply' + position,
-				fields: [
-					{
-						name: 'Label',
-						value: 'Apply for ' + position
-					}
-				]
-			};
-		})
-	]
+		}
+	],
+	applyRoles: ['Influencer', 'Entrepreneur', 'Investor', 'Freelancer']
 };

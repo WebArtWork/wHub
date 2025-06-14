@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormService } from 'src/app/core/modules/form/form.service';
-import { TranslateService } from 'src/app/core/modules/translate/translate.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { TableModule } from 'src/app/core/modules/table/table.module';
-import { AlertService, CrudComponent, CrudOptions } from 'wacom';
-import { UserService } from 'src/app/modules/user/services/user.service';
+import { TranslateService } from 'src/app/core/modules/translate/translate.service';
 import { User } from 'src/app/modules/user/interfaces/user.interface';
+import { UserService } from 'src/app/modules/user/services/user.service';
+import { environment } from 'src/environments/environment';
+import { AlertService, CrudComponent, CrudOptions } from 'wacom';
 
 @Component({
 	imports: [CommonModule, TableModule],
@@ -18,7 +19,9 @@ export class ApplicationsComponent extends CrudComponent<
 	User,
 	FormInterface
 > {
-	columns = ['name', 'email', 'developer', 'designer', 'agent'];
+	readonly applyRoles = environment.applyRoles;
+
+	columns = ['name', 'email', ...this.applyRoles];
 
 	config = this.getConfig();
 
@@ -35,97 +38,33 @@ export class ApplicationsComponent extends CrudComponent<
 		this.setDocuments();
 
 		this.config.buttons.push(
-			{
-				icon: 'code',
-				click: (user: User) => {
-					this._alert.question({
-						text: this._translate.translate(
-							'Common.Are you sure you want to toggle user developer role?'
-						),
-						buttons: [
-							{
-								text: this._translate.translate('Common.No')
-							},
-							{
-								text: this._translate.translate('Common.Yes'),
-								callback: (): void => {
-									user.is['developer'] =
-										!user.is['developer'];
+			...this.applyRoles.map((role) => {
+				return {
+					icon: this._iconForRole[role],
+					click: (user: User) => {
+						this._alert.question({
+							text: this._translate.translate(
+								`Common.Are you sure you want to toggle ${role} role?`
+							),
+							buttons: [
+								{
+									text: this._translate.translate('Common.No')
+								},
+								{
+									text: this._translate.translate(
+										'Common.Yes'
+									),
+									callback: (): void => {
+										user.is[role] = !user.is[role];
 
-									this._userService.updateAdmin(user);
+										this._userService.updateAdmin(user);
+									}
 								}
-							}
-						]
-					});
-				}
-			},
-			{
-				icon: 'brush',
-				click: (user: User) => {
-					this._alert.question({
-						text: this._translate.translate(
-							'Common.Are you sure you want to toggle user designer role?'
-						),
-						buttons: [
-							{
-								text: this._translate.translate('Common.No')
-							},
-							{
-								text: this._translate.translate('Common.Yes'),
-								callback: (): void => {
-									user.is['designer'] = !user.is['designer'];
-
-									this._userService.updateAdmin(user);
-								}
-							}
-						]
-					});
-				}
-			},
-			{
-				icon: 'support_agent',
-				click: (user: User) => {
-					this._alert.question({
-						text: this._translate.translate(
-							'Common.Are you sure you want to toggle user agent role?'
-						),
-						buttons: [
-							{
-								text: this._translate.translate('Common.No')
-							},
-							{
-								text: this._translate.translate('Common.Yes'),
-								callback: (): void => {
-									user.is['agent'] = !user.is['agent'];
-
-									this._userService.updateAdmin(user);
-								}
-							}
-						]
-					});
-				}
-			},
-			{
-				icon: 'delete',
-				click: (user: User) => {
-					this._alert.question({
-						text: this._translate.translate(
-							'Common.Are you sure you want to reject this user?'
-						),
-						buttons: [
-							{
-								text: this._translate.translate('Common.No')
-							},
-							{
-								text: this._translate.translate('Common.Yes'),
-								callback: (): void => {
-									console.log(user);
-								}
-							}
-						]
-					});
-				}
-			}
+							]
+						});
+					}
+				};
+			})
 		);
 	}
 
@@ -146,4 +85,11 @@ export class ApplicationsComponent extends CrudComponent<
 			name: 'application'
 		} as CrudOptions<User>;
 	}
+
+	private _iconForRole: Record<string, string> = {
+		Influencer: 'record_voice_over',
+		Entrepreneur: 'lightbulb',
+		Investor: 'trending_up',
+		Freelancer: 'work_outline'
+	};
 }
