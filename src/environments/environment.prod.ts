@@ -1,7 +1,7 @@
 import { languages } from 'src/app/core/modules/translate/languages';
 
 export const environment = {
-	roles: [],
+	roles: ['Influencer', 'Entrepreneur', 'Investor', 'Freelancer'],
 	production: true,
 	appId: 'admin.webart.work',
 	url: 'https://webart.work',

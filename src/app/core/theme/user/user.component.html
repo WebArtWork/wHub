@@ -5,10 +5,20 @@
 				<a
 					routerLinkActive="_activeLink"
 					(click)="showSidebar = false"
-					routerLink="/profile"
+					routerLink="/users"
 					class="nav__a"
 				>
-					<span class="material-icons">home</span>
+					<span class="material-icons">groups</span>
+				</a>
+			</li>
+			<li class="nav__li">
+				<a
+					routerLinkActive="_activeLink"
+					(click)="showSidebar = false"
+					routerLink="/businesses/all"
+					class="nav__a"
+				>
+					<span class="material-icons">business</span>
 				</a>
 			</li>
 			<li class="nav__li _burger" (click)="showSidebar = !showSidebar">
@@ -182,6 +192,16 @@
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"
 					routerLinkActive="_activeLink"
+					routerLink="/businesses"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">business</span>
+					<span translate>Theme.Businesses</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
 					routerLink="/portfolios"
 					class="nav__burger-link"
 					(click)="hideSidebar()"
@@ -199,6 +219,18 @@
 					<span class="material-icons">email</span>
 					<span translate>Theme.Contracts</span>
 				</a>
+				@for (role of applyRoles; track role) {
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/users/{{role}}"
+					class="nav__burger-link"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">{{iconForRole[role]}}</span>
+					<span>{{'Theme.' + role + 's' | translate}}</span>
+				</a>
+				}
 				<hr />
 			</div>
 		</div>
