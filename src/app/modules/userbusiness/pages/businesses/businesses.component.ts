@@ -5,9 +5,7 @@ import { FormService } from 'src/app/core/modules/form/form.service';
 import { FormInterface } from 'src/app/core/modules/form/interfaces/form.interface';
 import { TableModule } from 'src/app/core/modules/table/table.module';
 import { TranslateService } from 'src/app/core/modules/translate/translate.service';
-import { UserService } from 'src/app/modules/user/services/user.service';
-import { environment } from 'src/environments/environment';
-import { CoreService, CrudComponent, TableConfig } from 'wacom';
+import { CrudComponent } from 'wacom';
 import { userbusinessFormComponents } from '../../formcomponents/userbusiness.formcomponents';
 import { Userbusiness } from '../../interfaces/userbusiness.interface';
 import { UserbusinessService } from '../../services/userbusiness.service';
@@ -24,13 +22,11 @@ export class BusinessesComponent extends CrudComponent<
 > {
 	columns = ['name'];
 
-	config: TableConfig<Userbusiness>;
+	config = this.getConfig();
 
 	constructor(
 		_userbusinessService: UserbusinessService,
-		private _userService: UserService,
 		_translate: TranslateService,
-		private _core: CoreService,
 		private _router: Router,
 		_form: FormService
 	) {
@@ -42,45 +38,25 @@ export class BusinessesComponent extends CrudComponent<
 			'business'
 		);
 
-		if (this._router.url.includes('admin')) {
-			this._core.onComplete('us.user').then(() => {
-				this._canModify = !!environment.applyRoles.filter((role) => {
-					return !!this._userService.user.is[role];
-				}).length;
-
-				this.config = this.getConfig();
-
-				this.config.buttons.push(this._buttonView);
-
-				console.log(this.config.buttons);
-			});
-		} else {
-			this.config = this.getConfig();
-
-			this.config.buttons.push(this._buttonView);
-		}
+		this.config.buttons.push({
+			icon: 'visibility',
+			hrefFunc: (business: Userbusiness) => {
+				return '/business/' + business._id;
+			}
+		});
 
 		this.setDocuments();
 	}
 
 	override allowCreate(): boolean {
-		return this._canModify;
+		return this._router.url.includes('admin');
 	}
 
 	override allowMutate(): boolean {
-		return this._canModify;
+		return this._router.url.includes('admin');
 	}
 
 	override allowUrl(): boolean {
-		return this._canModify;
+		return this._router.url.includes('admin');
 	}
-
-	private _canModify = false;
-
-	private _buttonView = {
-		icon: 'visibility',
-		hrefFunc: (business: Userbusiness) => {
-			return '/business/' + business._id;
-		}
-	};
 }
