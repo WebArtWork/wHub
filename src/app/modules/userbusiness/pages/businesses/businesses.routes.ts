@@ -5,9 +5,5 @@ export const businessesRoutes: Routes = [
 	{
 		path: '',
 		component: BusinessesComponent
-	},
-	{
-		path: 'all',
-		component: BusinessesComponent
 	}
 ];

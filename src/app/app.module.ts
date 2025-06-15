@@ -49,6 +49,19 @@ const routes: Routes = [
 		children: [
 			/* user */
 			{
+				path: 'agencies',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Agencies'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./modules/useragency/pages/agencies/agencies.routes'
+					).then((r) => r.agenciesRoutes)
+			},
+			{
 				path: 'users',
 				canActivate: [MetaGuard],
 				data: {
@@ -56,8 +69,11 @@ const routes: Routes = [
 						title: 'Users'
 					}
 				},
-				loadChildren: () => import('./pages/user/users/users.routes').then(r => r.usersRoutes)
-			}, 
+				loadChildren: () =>
+					import('./pages/user/users/users.routes').then(
+						(r) => r.usersRoutes
+					)
+			},
 			{
 				path: 'businesses',
 				canActivate: [MetaGuard],
@@ -209,6 +225,32 @@ const routes: Routes = [
 		component: UserComponent,
 		children: [
 			/* admin */
+			{
+				path: 'agencies',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Agencies'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./modules/useragency/pages/agencies/agencies.routes'
+					).then((r) => r.agenciesRoutes)
+			},
+			{
+				path: 'businesses',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Businesses'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./modules/userbusiness/pages/businesses/businesses.routes'
+					).then((r) => r.businessesRoutes)
+			},
 			{
 				path: 'skills',
 				canActivate: [MetaGuard],

@@ -22,7 +22,7 @@ export class BusinessesComponent extends CrudComponent<
 	Userbusiness,
 	FormInterface
 > {
-	columns = ['name', 'description'];
+	columns = ['name'];
 
 	config: TableConfig<Userbusiness>;
 
@@ -38,19 +38,26 @@ export class BusinessesComponent extends CrudComponent<
 			userbusinessFormComponents,
 			_form,
 			_translate,
-			_userbusinessService
+			_userbusinessService,
+			'business'
 		);
 
-		if (this._router.url.includes('all')) {
-			this.config = this.getConfig();
-		} else {
+		if (this._router.url.includes('admin')) {
 			this._core.onComplete('us.user').then(() => {
 				this._canModify = !!environment.applyRoles.filter((role) => {
 					return !!this._userService.user.is[role];
 				}).length;
 
 				this.config = this.getConfig();
+
+				this.config.buttons.push(this._buttonView);
+
+				console.log(this.config.buttons);
 			});
+		} else {
+			this.config = this.getConfig();
+
+			this.config.buttons.push(this._buttonView);
 		}
 
 		this.setDocuments();
@@ -64,5 +71,16 @@ export class BusinessesComponent extends CrudComponent<
 		return this._canModify;
 	}
 
+	override allowUrl(): boolean {
+		return this._canModify;
+	}
+
 	private _canModify = false;
+
+	private _buttonView = {
+		icon: 'visibility',
+		hrefFunc: (business: Userbusiness) => {
+			return '/business/' + business._id;
+		}
+	};
 }

@@ -15,7 +15,17 @@
 				<a
 					routerLinkActive="_activeLink"
 					(click)="showSidebar = false"
-					routerLink="/businesses/all"
+					routerLink="/businesses"
+					class="nav__a"
+				>
+					<span class="material-icons">business_center</span>
+				</a>
+			</li>
+			<li class="nav__li">
+				<a
+					routerLinkActive="_activeLink"
+					(click)="showSidebar = false"
+					routerLink="/agencies"
 					class="nav__a"
 				>
 					<span class="material-icons">business</span>
@@ -188,17 +198,29 @@
 					<span class="material-icons">work_outline</span>
 					<span translate>Theme.Professions</span>
 				</a>
-				<hr *ngIf="us.role('admin')" />
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"
 					routerLinkActive="_activeLink"
-					routerLink="/businesses"
+					routerLink="/admin/businesses"
 					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">business_center</span>
+					<span translate>Theme.Businesses</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/agencies"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
 					(click)="hideSidebar()"
 				>
 					<span class="material-icons">business</span>
 					<span translate>Theme.Businesses</span>
 				</a>
+				<hr *ngIf="us.role('admin')" />
 				<a
 					[routerLinkActiveOptions]="{ exact: true }"
 					routerLinkActive="_activeLink"
