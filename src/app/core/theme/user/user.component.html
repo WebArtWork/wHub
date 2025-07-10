@@ -218,7 +218,18 @@
 					(click)="hideSidebar()"
 				>
 					<span class="material-icons">business</span>
-					<span translate>Theme.Businesses</span>
+					<span translate>Theme.Agencies</span>
+				</a>
+				<a
+					[routerLinkActiveOptions]="{ exact: true }"
+					routerLinkActive="_activeLink"
+					routerLink="/admin/partners"
+					class="nav__burger-link"
+					*ngIf="us.role('admin')"
+					(click)="hideSidebar()"
+				>
+					<span class="material-icons">badge</span>
+					<span translate>Theme.Partners</span>
 				</a>
 				<hr *ngIf="us.role('admin')" />
 				<a
