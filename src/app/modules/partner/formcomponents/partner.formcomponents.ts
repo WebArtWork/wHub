@@ -115,6 +115,20 @@ export const partnerFormComponents = {
 					value: 'Partner ios app'
 				}
 			]
+		},
+		{
+			name: 'Text',
+			key: 'place',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner place'
+				},
+				{
+					name: 'Label',
+					value: 'Partner place'
+				}
+			]
 		}
 	]
 };
