@@ -59,6 +59,48 @@ export const partnerFormComponents = {
 					value: 'Our role'
 				}
 			]
+		},
+		{
+			name: 'Text',
+			key: 'website',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner website'
+				},
+				{
+					name: 'Label',
+					value: 'Our role'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'android',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner android app'
+				},
+				{
+					name: 'Label',
+					value: 'Our role'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'ios',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner ios app'
+				},
+				{
+					name: 'Label',
+					value: 'Our role'
+				}
+			]
 		}
 	]
 };
