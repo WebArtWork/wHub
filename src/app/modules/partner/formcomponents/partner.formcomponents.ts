@@ -70,7 +70,7 @@ export const partnerFormComponents = {
 				},
 				{
 					name: 'Label',
-					value: 'Our role'
+					value: 'Partner website'
 				}
 			]
 		},
@@ -84,7 +84,7 @@ export const partnerFormComponents = {
 				},
 				{
 					name: 'Label',
-					value: 'Our role'
+					value: 'Partner android app'
 				}
 			]
 		},
@@ -98,7 +98,7 @@ export const partnerFormComponents = {
 				},
 				{
 					name: 'Label',
-					value: 'Our role'
+					value: 'Partner ios app'
 				}
 			]
 		}
