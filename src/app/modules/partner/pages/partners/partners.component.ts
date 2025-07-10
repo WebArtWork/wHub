@@ -42,6 +42,10 @@ export class PartnersComponent extends CrudComponent<
 			'Partner'
 		);
 
-		this.setDocuments();
+		this.setDocuments().then(() => {
+			this.documents.sort((a, b) => {
+				return a.order - b.order;
+			});
+		});
 	}
 }
