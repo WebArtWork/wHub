@@ -25,10 +25,6 @@ export class PartnersComponent extends CrudComponent<
 
 	config = this.getConfig();
 
-	protected override allowUrl(): boolean {
-		return false;
-	}
-
 	protected override allowSort(): boolean {
 		return true;
 	}
