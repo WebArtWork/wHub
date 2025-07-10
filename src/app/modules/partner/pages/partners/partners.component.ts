@@ -29,6 +29,10 @@ export class PartnersComponent extends CrudComponent<
 		return false;
 	}
 
+	protected override allowSort(): boolean {
+		return true;
+	}
+
 	constructor(
 		_partnerService: PartnerService,
 		_translate: TranslateService,
