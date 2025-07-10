@@ -76,6 +76,20 @@ export const partnerFormComponents = {
 		},
 		{
 			name: 'Text',
+			key: 'instagram',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner instagram'
+				},
+				{
+					name: 'Label',
+					value: 'Partner instagram'
+				}
+			]
+		},
+		{
+			name: 'Text',
 			key: 'android',
 			fields: [
 				{
