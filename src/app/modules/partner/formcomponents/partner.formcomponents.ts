@@ -132,20 +132,6 @@ export const partnerFormComponents = {
 		},
 		{
 			name: 'Text',
-			key: 'androidtitle',
-			fields: [
-				{
-					name: 'Placeholder',
-					value: 'fill partner android app title'
-				},
-				{
-					name: 'Label',
-					value: 'Partner android app title'
-				}
-			]
-		},
-		{
-			name: 'Text',
 			key: 'ios',
 			fields: [
 				{
@@ -155,20 +141,6 @@ export const partnerFormComponents = {
 				{
 					name: 'Label',
 					value: 'Partner ios app'
-				}
-			]
-		},
-		{
-			name: 'Text',
-			key: 'iostitle',
-			fields: [
-				{
-					name: 'Placeholder',
-					value: 'fill partner ios app title'
-				},
-				{
-					name: 'Label',
-					value: 'Partner ios app title'
 				}
 			]
 		},

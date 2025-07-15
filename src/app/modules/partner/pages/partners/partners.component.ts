@@ -21,7 +21,7 @@ export class PartnersComponent extends CrudComponent<
 > {
 	override configType: 'local' | 'server' = 'local';
 
-	columns = ['name', 'description'];
+	columns = ['name', 'website', 'instagram', 'facebook', 'linkedIn'];
 
 	config = this.getConfig();
 
