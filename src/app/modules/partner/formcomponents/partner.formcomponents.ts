@@ -90,6 +90,34 @@ export const partnerFormComponents = {
 		},
 		{
 			name: 'Text',
+			key: 'facebook',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner facebook'
+				},
+				{
+					name: 'Label',
+					value: 'Partner facebook'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'linkedIn',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner linkedIn'
+				},
+				{
+					name: 'Label',
+					value: 'Partner linkedIn'
+				}
+			]
+		},
+		{
+			name: 'Text',
 			key: 'android',
 			fields: [
 				{
@@ -99,6 +127,20 @@ export const partnerFormComponents = {
 				{
 					name: 'Label',
 					value: 'Partner android app'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'androidtitle',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner android app title'
+				},
+				{
+					name: 'Label',
+					value: 'Partner android app title'
 				}
 			]
 		},
@@ -118,6 +160,20 @@ export const partnerFormComponents = {
 		},
 		{
 			name: 'Text',
+			key: 'iostitle',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner ios app title'
+				},
+				{
+					name: 'Label',
+					value: 'Partner ios app title'
+				}
+			]
+		},
+		{
+			name: 'Text',
 			key: 'place',
 			fields: [
 				{
@@ -127,6 +183,16 @@ export const partnerFormComponents = {
 				{
 					name: 'Label',
 					value: 'Partner place'
+				}
+			]
+		},
+		{
+			name: 'Photo',
+			key: 'placethumb',
+			fields: [
+				{
+					name: 'Label',
+					value: 'Partner google map screenshot'
 				}
 			]
 		}
