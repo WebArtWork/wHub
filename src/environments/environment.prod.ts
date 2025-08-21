@@ -4,7 +4,7 @@ export const environment = {
 	roles: ['Influencer', 'Entrepreneur', 'Investor', 'Freelancer'],
 	production: true,
 	appId: 'admin.webart.work',
-	url: 'https://webart.work',
+	url: 'https://api.webart.work',
 	meta: {
 		suffix: 'wHub',
 		title: 'wHub – Your All-in-One Tech Career Platform',
