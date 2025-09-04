@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormInterface } from '../../interfaces/form.interface';
 import { HttpService } from 'wacom';
+import { FormInterface } from '../../interfaces/form.interface';
 
 @Component({
 	selector: 'app-modal-unique',
@@ -22,7 +22,10 @@ export class ModalUniqueComponent {
 	change(): void {
 		this._http
 			.post(
-				'/api/' + this.module + '/unique' + (this.field || ''),
+				'/api/' +
+					this.module.toLowerCase() +
+					'/unique' +
+					(this.field || ''),
 				this.doc
 			)
 			.subscribe((resp: string) => {
