@@ -159,6 +159,90 @@ export const partnerFormComponents = {
 			]
 		},
 		{
+			name: 'Text',
+			key: 'placeName',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner placeName'
+				},
+				{
+					name: 'Label',
+					value: 'Partner placeName'
+				}
+			]
+		},
+		{
+			name: 'Number',
+			key: 'born',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner born'
+				},
+				{
+					name: 'Label',
+					value: 'Partner born'
+				}
+			]
+		},
+		{
+			name: 'Number',
+			key: 'employees',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner employees'
+				},
+				{
+					name: 'Label',
+					value: 'Partner employees'
+				}
+			]
+		},
+		{
+			name: 'Number',
+			key: 'projects',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner projects'
+				},
+				{
+					name: 'Label',
+					value: 'Partner projects'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'phone',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner phone'
+				},
+				{
+					name: 'Label',
+					value: 'Partner phone'
+				}
+			]
+		},
+		{
+			name: 'Text',
+			key: 'email',
+			fields: [
+				{
+					name: 'Placeholder',
+					value: 'fill partner email'
+				},
+				{
+					name: 'Label',
+					value: 'Partner email'
+				}
+			]
+		},
+		{
 			name: 'Photo',
 			key: 'placethumb',
 			fields: [
