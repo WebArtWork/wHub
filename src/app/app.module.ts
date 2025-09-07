@@ -15,6 +15,7 @@ import { AdminsGuard } from './core/guards/admins.guard';
 import { AuthenticatedGuard } from './core/guards/authenticated.guard';
 import { GuestGuard } from './core/guards/guest.guard';
 import { UafpvacademyComponent } from './core/theme/uafpvacademy/uafpvacademy.component';
+import { WebartWorkComponent } from './core/theme/webart.work/webart.work.component';
 
 const routes: Routes = [
 	{
@@ -43,12 +44,32 @@ const routes: Routes = [
 			}
 		]
 	},
+
 	{
-		path: '',
+		path: 'webart.work',
+		canActivate: [AuthenticatedGuard],
+		component: WebartWorkComponent,
+		children: [
+			{
+				path: 'partners',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Partners'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./modules/webartworkpartner/pages/partners/partners.routes'
+					).then((r) => r.partnersRoutes)
+			}
+		]
+	},
+	{
+		path: 'uafpv.academy',
 		canActivate: [AuthenticatedGuard],
 		component: UafpvacademyComponent,
 		children: [
-			/* user */
 			{
 				path: 'units',
 				canActivate: [MetaGuard],
@@ -404,7 +425,8 @@ const routes: Routes = [
 		AppComponent,
 		GuestComponent,
 		UserComponent,
-		UafpvacademyComponent
+		UafpvacademyComponent,
+		WebartWorkComponent
 	],
 	imports: [
 		CoreModule,
