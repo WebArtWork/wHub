@@ -1,36 +1,7 @@
 <div class="wrapper" id="wrapper">
 	<nav class="nav" (clickOutside)="showSidebar = false">
 		<ul class="nav__ul container" [class._active]="showSidebar">
-			<li class="nav__li">
-				<a
-					routerLinkActive="_activeLink"
-					(click)="showSidebar = false"
-					routerLink="/users"
-					class="nav__a"
-				>
-					<span class="material-icons">groups</span>
-				</a>
-			</li>
-			<li class="nav__li">
-				<a
-					routerLinkActive="_activeLink"
-					(click)="showSidebar = false"
-					routerLink="/businesses"
-					class="nav__a"
-				>
-					<span class="material-icons">business_center</span>
-				</a>
-			</li>
-			<li class="nav__li">
-				<a
-					routerLinkActive="_activeLink"
-					(click)="showSidebar = false"
-					routerLink="/agencies"
-					class="nav__a"
-				>
-					<span class="material-icons">business</span>
-				</a>
-			</li>
+			<core-topbar (navigated)="showSidebar = false"></core-topbar>
 			<li class="nav__li _burger" (click)="showSidebar = !showSidebar">
 				<a class="nav__toggle" [class._active]="showSidebar">
 					<span class="nav__toggle-line"></span>

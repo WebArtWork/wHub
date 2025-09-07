@@ -14,6 +14,7 @@ import { MetaGuard, WacomModule } from 'wacom';
 import { AdminsGuard } from './core/guards/admins.guard';
 import { AuthenticatedGuard } from './core/guards/authenticated.guard';
 import { GuestGuard } from './core/guards/guest.guard';
+import { UafpvacademyComponent } from './core/theme/uafpvacademy/uafpvacademy.component';
 
 const routes: Routes = [
 	{
@@ -39,6 +40,27 @@ const routes: Routes = [
 					import('./pages/guest/sign/sign.module').then(
 						(m) => m.SignModule
 					)
+			}
+		]
+	},
+	{
+		path: '',
+		canActivate: [AuthenticatedGuard],
+		component: UafpvacademyComponent,
+		children: [
+			/* user */
+			{
+				path: 'units',
+				canActivate: [MetaGuard],
+				data: {
+					meta: {
+						title: 'Units'
+					}
+				},
+				loadChildren: () =>
+					import(
+						'./modules/uafpvacademyunit/pages/units/units.routes'
+					).then((r) => r.unitsRoutes)
 			}
 		]
 	},
@@ -378,7 +400,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-	declarations: [AppComponent, GuestComponent, UserComponent],
+	declarations: [
+		AppComponent,
+		GuestComponent,
+		UserComponent,
+		UafpvacademyComponent
+	],
 	imports: [
 		CoreModule,
 		BrowserModule,
