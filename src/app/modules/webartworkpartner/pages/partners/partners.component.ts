@@ -43,7 +43,7 @@ export class PartnersComponent extends CrudComponent<
 		'data'
 	];
 
-	columns = ['name', 'description'];
+	columns = ['name', 'website', 'instagram', 'linkedIn'];
 
 	config = this.getConfig();
 
