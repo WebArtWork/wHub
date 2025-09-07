@@ -269,19 +269,6 @@ const routes: Routes = [
 		children: [
 			/* admin */
 			{
-				path: 'partners',
-				canActivate: [MetaGuard],
-				data: {
-					meta: {
-						title: 'Partners'
-					}
-				},
-				loadChildren: () =>
-					import(
-						'./modules/partner/pages/partners/partners.routes'
-					).then((r) => r.partnersRoutes)
-			},
-			{
 				path: 'agencies',
 				canActivate: [MetaGuard],
 				data: {
