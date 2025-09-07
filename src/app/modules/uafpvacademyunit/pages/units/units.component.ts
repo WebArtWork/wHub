@@ -23,6 +23,38 @@ export class UnitsComponent extends CrudComponent<
 
 	config = this.getConfig();
 
+	override updatableFields = [
+		'_id',
+		'name',
+		'description',
+		'data',
+		'range',
+		'accuracy',
+		'firepower',
+		'rateOfFire',
+		'mobility',
+		'stealth',
+		'defenseResistance',
+		'versatility',
+		'autonomy',
+		'endurance',
+		'payload',
+		'survivability',
+		'logistics',
+		'electronicWarfareResistance',
+		'precisionStrike',
+		'reconnaissance',
+		'psychologicalEffect',
+		'originCountry',
+		'yearOfCreation',
+		'activeCountries',
+		'manufacturer',
+		'conflictUsage',
+		'status',
+		'unitCost',
+		'productionQuantity'
+	];
+
 	constructor(
 		_uafpvacademyunitService: UafpvacademyunitService,
 		_translate: TranslateService,

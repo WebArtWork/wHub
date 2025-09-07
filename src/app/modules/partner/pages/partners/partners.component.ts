@@ -19,6 +19,30 @@ export class PartnersComponent extends CrudComponent<
 	Partner,
 	FormInterface
 > {
+	override updatableFields = [
+		'_id',
+		'name',
+		'description',
+		'thumb',
+		'ourrole',
+		'website',
+		'android',
+		'ios',
+		'instagram',
+		'facebook',
+		'linkedIn',
+		'place',
+		'placeName',
+		'placethumb',
+		'order',
+		'born',
+		'employees',
+		'projects',
+		'phone',
+		'email',
+		'data'
+	];
+
 	override configType: 'local' | 'server' = 'local';
 
 	columns = ['name', 'website', 'instagram', 'facebook', 'linkedIn'];
