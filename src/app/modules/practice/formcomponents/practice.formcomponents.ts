@@ -3,7 +3,7 @@ export const practiceFormComponents = {
 	title: 'Practice',
 	components: [
 		{
-			name: 'Photo',
+			name: 'Text',
 			key: 'thumb',
 			fields: [
 				{
@@ -144,4 +144,4 @@ export const practiceFormComponents = {
 			]
 		}
 	]
-}
+};

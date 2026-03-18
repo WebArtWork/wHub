@@ -11,7 +11,7 @@ export const environment = {
 		password: 'asdasdasdasd',
 		resetPin: null
 	},
-	url: ''
+	url: 'https://api.webart.work'
 };
 
 /*
